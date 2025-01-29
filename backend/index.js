@@ -153,6 +153,7 @@ console.log(user)
 
 })
 
+
 app.get("/get-all-travelStories", isLoggedIn, async(req,res)=>{
   const {userId} = req.user;
 
@@ -177,6 +178,7 @@ app.get("/get-user-travelStories", isLoggedIn, async(req,res)=>{
    }
 
 })
+
 
 app.post("/image-upload", isLoggedIn, (req, res)=>{
   
