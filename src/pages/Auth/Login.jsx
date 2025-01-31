@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div className="h-screen bg-cyan-50 overflow-hidden relative">
       <div className="container h-screen flex items-center justify-center px-20 mx-auto">
-        <div className="w-2/4 h-[90vh] flex items-end bg-[url(src/assets/XSe80ORCzHU0rP2rjPdXX.avif)] bg-cover bg-center rounded-lg p-10 z-50">
+        <div className="w-2/4 h-[90vh] flex items-end bg-[url(src/assets/XSe80ORCzHU0rP2rjPdXX.png)] bg-cover bg-center rounded-lg p-10 z-50">
           <div>
             <h4 className="text-5xl text-white font-semibold leading-[58px]">Capture Your <br/> Journey</h4>
             <p className="text-[15px] text-white leading-6 pr-7 mt-4">Record your travel experience and memories in your personal travel journey.</p>
