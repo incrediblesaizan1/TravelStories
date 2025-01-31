@@ -1,3 +1,24 @@
 @import "tailwindcss";
 
+@layer base{
+   body{
+    background-color: #fdfeff;
+    overflow-x: hidden;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+   }
+}
 
+@layer components{
+    .input-box{
+        @apply w-full text-sm bg-cyan-600/5 rounded px-5 py-5 mb-4 outline-none;
+    }
+    .btn-primary{
+        @apply w-full text-sm font-medium text-white bg-cyan-500 shadow-lg shadow-cyan-200/50 p-[10px] rounded-full my-1 hover:bg-cyan-100 hover:text-[#05B6D3] cursor-pointer
+    }
+
+    .btn-light{
+        @apply bg-cyan-50 text-[#05B6D3] shadow-cyan-100 border-cyan-100 border-2 hover:bg-[#05B6D3] hover:text-white
+    }
+
+}
