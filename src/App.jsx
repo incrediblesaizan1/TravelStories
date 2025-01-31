@@ -8,6 +8,10 @@ function App() {
 
   const router = createBrowserRouter([
     {
+      path: '/',
+      element: <Login />
+    },
+    {
       path: '/dashboard',
       element: <Home />
     },
