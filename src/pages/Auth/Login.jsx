@@ -1,14 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom"; // 
 import background from "../../assets/XSe80ORCzHU0rP2rjPdXX.png";
+import PasswordInput from "../../components/input/PasswordInput"
+
 
 const Login = () => {
-  const navigate = useNavigate(); // ✅ Call useNavigate inside the component
+  const navigate = useNavigate(); 
 
   return (
     <div className="h-screen bg-cyan-50 overflow-hidden relative">
       <div className="container h-screen flex items-center justify-center px-20 mx-auto">
-        {/* Background Image Fixed */}
         <div
           style={{ backgroundImage: `url(${background})` }}
           className="w-2/4 h-[90vh] flex items-end bg-cover bg-center rounded-lg p-10 z-50"
@@ -27,6 +28,7 @@ const Login = () => {
           <form onSubmit={(e) => e.preventDefault()}>
             <h4 className="text-2xl font-semibold mb-7">Login</h4>
             <input type="text" placeholder="E-Mail" className="input-box" />
+            <PasswordInput />
 
             <button type="submit" className="btn-primary">LOGIN</button>
 
