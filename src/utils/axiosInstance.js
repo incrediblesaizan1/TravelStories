@@ -1,16 +1,9 @@
-// import axios from "axios";
-// import {BASE_URL} from "./constant"
+import axios from "axios";
 
-// const axiosInstace = axios.create({
-//     baseURL: BASE_URL;
-//     timeout: 1000,
-//     headers:{
-//         "Content-Type": "application/json",
-//     }
-// })
-
-// axiosInstace.interceptors.request.use(
-//     (config)=>{
-//         const accessToken = localStorage.getItem
-//     }
-// )
+export const axiosInstance = axios.create({
+  baseURL: "https://travelstorybackend.vercel.app", // ✅ Replace with your backend URL
+  withCredentials: true,  // ✅ Important for cookies
+  headers: {
+    "Content-Type": "application/json",
+  },
+});

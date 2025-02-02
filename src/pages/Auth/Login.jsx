@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // 
 import background from "../../assets/XSe80ORCzHU0rP2rjPdXX.png";
 import PasswordInput from "../../components/input/PasswordInput"
-import {BASE_URL} from "../../utils/constant"
 import axios from "axios";
+import {axiosInstance} from "../../utils/axiosInstance"
 
 
 const Login = () => {
@@ -23,18 +23,14 @@ const Login = () => {
   setError("")
 
   try{
-    const response = await axios.post(
-      `https://TravelStoryBackend.vercel.app/login`,
-      // `https://travelstorybackend.vercel.app/login`,
-      {
-         "identifier": identifier,
-    "password": password
-      },
-      {withCredentials: true}
-    )
-    console.log("hello")
+    const response = await axiosInstance.post("/login", {
+      identifier,
+      password
+    });
     console.log("login successful", response.data)
     navigate("/dashboard")
+    const res = await axiosInstance.get("/user")
+    console.log("user", res.data)
   }catch(err){
     console.error("Login error:", err.response?.data || err.message);
     setError(err.response?.data?.message || "Something went wrong");
