@@ -24,12 +24,13 @@ const Login = () => {
 
   try{
     const response = await axios.post(
-      `https://travelstorybackend.vercel.app/login`,
+      `https://TravelStoryBackend.vercel.app/login`,
+      // `https://travelstorybackend.vercel.app/login`,
       {
-         "identifier": "test",
-    "password": "test"
+         "identifier": identifier,
+    "password": password
       },
-      // {withCredentials: true}
+      {withCredentials: true}
     )
     console.log("hello")
     console.log("login successful", response.data)
