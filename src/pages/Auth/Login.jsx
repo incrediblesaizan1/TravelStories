@@ -24,8 +24,7 @@ const Login = () => {
 
   try{
     const response = await axios.post(
-      // `https://travelstorybackend.vercel.app/login`,
-      "http://localhost:3000/login",
+      `https://travelstorybackend.vercel.app/login`,
       {
          "identifier": "test",
     "password": "test"
