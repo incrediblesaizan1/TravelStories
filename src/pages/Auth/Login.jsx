@@ -29,8 +29,6 @@ const Login = () => {
     });
     console.log("login successful", response.data)
     navigate("/dashboard")
-    const res = await axiosInstance.get("/user")
-    console.log("user", res.data)
   }catch(err){
     console.error("Login error:", err.response?.data || err.message);
     setError(err.response?.data?.message || "Something went wrong");
