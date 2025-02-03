@@ -6,6 +6,6 @@ const SignUp = () => {
       signup
     </div>
   )
-}
+} 
 
 export default SignUp
