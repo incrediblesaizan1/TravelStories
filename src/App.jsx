@@ -43,13 +43,12 @@ const Root = () =>{
     const checkAuth = async() =>{
       try {
         await axiosInstance("/user")
+        setIsLoading(false);
         setIsAuthenticated(true)
       } catch (error) {
+        setIsLoading(false);
         setIsAuthenticated(false)
       }
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1300);
     }
      checkAuth()
   }, [])

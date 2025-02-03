@@ -37,7 +37,7 @@ const Login = () => {
     } catch (err) {
       setIsLoading(false);
       console.error("Login error:", err.response?.data || err.message);
-      setError(err.response?.data?.message || "Something went wrong");
+      setError(err.response?.data?.message || "Something went wrong, please try again.");
     }
   };
 
