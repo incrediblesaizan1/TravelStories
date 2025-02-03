@@ -1,28 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { axiosInstance } from "../../utils/axiosInstance";
 import Loader from "../../components/common/Loader"
+import NoLoggedIn from "../../components/common/NoLoggedIn"
+import Navbar from '../../components/common/Navbar';
+
 
 const Home = () => {
-  const [data, setData] = useState(null);  
+  const [isLoggedIn, setIsLoggedIn] = useState(null)
+  const [userInfo, setUserInfo] = useState(null)
 
-  const fetchData = async () => {   
+
+  const checkLoggedIN = async() =>{
     try {
-      const response = await axiosInstance.get("/user");  
-      setData(response.data);  
-      console.log(response.data);
+     const user = await axiosInstance("/user")
+     setUserInfo(user.data.user)
+     setIsLoggedIn(true)
     } catch (error) {
-      console.error("Error fetching data:", error.message);
+      setUserInfo(null)
+      setIsLoggedIn(false)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchData(); 
-  }, []);
+  checkLoggedIN()
+  }, [])
+
+  if (isLoggedIn === null) return <Loader />
 
   return (
-    <div>
-  {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <Loader />}
-    </div>
+    <>
+    {!isLoggedIn?<NoLoggedIn /> :(
+      <>
+      <Navbar userInfo={userInfo} />
+      </>
+    )}
+    </>
   );
 };
 
