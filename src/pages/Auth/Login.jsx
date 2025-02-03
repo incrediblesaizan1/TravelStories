@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"; //
 import background from "../../assets/XSe80ORCzHU0rP2rjPdXX.png";
 import PasswordInput from "../../components/input/PasswordInput"
 import {axiosInstance} from "../../utils/axiosInstance"
+import Loaderplain from "../../components/common/Loaderplain"
 
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
   const [identifier, setIdentifier] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleLogin = async (e) =>{
   e.preventDefault();
@@ -23,15 +25,17 @@ const Login = () => {
   }
 
   setError("")
+  setIsLoading(true);
 
   try{
     const response = await axiosInstance.post("/login", {
       identifier,
       password
     });
-    console.log("login successful", response.data)
+    setIsLoading(false)
     navigate("/dashboard")
   }catch(err){
+    setIsLoading(false)
     console.error("Login error:", err.response?.data || err.message);
     setError(err.response?.data?.message || "Something went wrong");
   }
@@ -78,7 +82,7 @@ const Login = () => {
             {error? <p className="text-red-500 text-xs pb-1">{error}</p>: ""}
 
             <button type="submit" className="btn-primary">LOGIN</button>
-
+            {isLoading && <Loaderplain />}
             <p className="text-xs text-slate-500 text-center my-4">Or</p>
             <button
               type="button"

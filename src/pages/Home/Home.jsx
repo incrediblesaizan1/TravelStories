@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosInstance } from "../../utils/axiosInstance";
+import Loader from "../../components/common/Loader"
 
 const Home = () => {
   const [data, setData] = useState(null);  
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <div>
-  {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : "Loading..."}
+  {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <Loader />}
     </div>
   );
 };
