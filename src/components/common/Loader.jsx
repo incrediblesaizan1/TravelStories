@@ -17,13 +17,16 @@ export default function CircularDeterminate() {
   }, []);
 
   return (
-    <div className='bg-zinc-800 flex justify-center items-center h-screen'>
+    <div className="h-screen flex justify-center items-center bg-cyan-50 overflow-hidden relative">
+
+    <div className="login-ui-box right-10 -top-40 " />
+    <div className="login-ui-box bg-cyan-200 -bottom-40 right-1/2" />
     {/* <Stack spacing={2} direction="row">
       <CircularProgress size="13rem"  value={progress} />
     </Stack> */}
   <HashLoader
   color="#0080d8"
-  size={100}
+  size={140}
 />
     </div>
   );
