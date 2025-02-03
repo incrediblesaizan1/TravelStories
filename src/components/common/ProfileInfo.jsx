@@ -6,20 +6,20 @@ import {axiosInstance} from "../../utils/axiosInstance"
 const ProfileInfo = ({ userInfo }) => {
   const navigate = useNavigate()
 
-  const handleLogout = async () => {
-    try {
-     const response = await axiosInstance.get("/logout")
-      if (response.ok) {
-        console.log('Logged out successfully');
-        console.log(response)
-        navigate("/login");
-      } else {
-        console.log('Logout failed');
-      }
-    } catch (error) {
-      console.error('Error during logout:', error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //    const response = await axiosInstance.get("/logout")
+  //     if (response.ok) {
+  //       console.log('Logged out successfully');
+  //       console.log(response)
+  //       navigate("/login");
+  //     } else {
+  //       console.log('Logout failed');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error during logout:', error);
+  //   }
+  // };
 
   return (
     <div className='flex items-center gap-3'>
@@ -28,7 +28,8 @@ const ProfileInfo = ({ userInfo }) => {
       </div>
       <div>
         <p className='text-sm font-medium'>{userInfo.fullname || ""}</p>
-        <button className='text-sm cursor-pointer text-slate-700 underline' onClick={handleLogout}>LogOut</button>
+        <a href="https://travelstorybackend.vercel.app/logout" className='text-sm cursor-pointer text-slate-700 underline'>LogOut</a>
+        {/* <button className='text-sm cursor-pointer text-slate-700 underline' onClick={handleLogout}>LogOut</button> */}
       </div>
     </div>
   )
