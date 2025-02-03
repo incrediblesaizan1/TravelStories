@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // 
 import background from "../../assets/XSe80ORCzHU0rP2rjPdXX.png";
 import PasswordInput from "../../components/input/PasswordInput"
-import axios from "axios";
 import {axiosInstance} from "../../utils/axiosInstance"
 
 
@@ -14,7 +13,10 @@ const Login = () => {
 
   const handleLogin = async (e) =>{
   e.preventDefault();
-
+  if(!identifier){
+    setError("All fields are required.");
+    return;
+  }
   if(!password){
     setError("Please enter the password");
     return;
