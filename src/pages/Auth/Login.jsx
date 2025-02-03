@@ -33,6 +33,7 @@ const Login = () => {
       password
     });
     setIsLoading(false)
+    console.log("Login successful", response.data)
     navigate("/dashboard")
   }catch(err){
     setIsLoading(false)
