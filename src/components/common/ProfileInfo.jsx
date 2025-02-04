@@ -12,10 +12,6 @@ const ProfileInfo = ({ userInfo }) => {
       </div>
       <div>
         <p className='text-sm font-medium'>{userInfo.fullname || ""}</p>
-        <button className='text-sm cursor-pointer text-slate-700 underline' onClick={()=>{
-          document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-          navigate("/login")
-        }}>LogOut</button>
       </div>
     </div>
   )
