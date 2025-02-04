@@ -15,6 +15,7 @@ const ProfileInfo = ({ userInfo }) => {
         <p className='text-lg relative left-2 top-1 font-medium'>{userInfo.fullname || ""}</p>
         <button className='text-sm cursor-pointer hover:text-red-500 text-slate-700 underline' onClick={async()=>{
         await axiosInstance.get("/logout")
+        window.close();
           navigate("/login")
         }}>LogOut</button>
       </div>
