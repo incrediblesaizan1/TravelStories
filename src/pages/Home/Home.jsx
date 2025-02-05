@@ -4,20 +4,29 @@ import Loader2 from "../../components/common/Loader2"
 import NoLoggedIn from "../../components/common/NoLoggedIn"
 import Navbar from '../../components/common/Navbar';
 import TravelStoryCard from "../../components/common/TravelStoryCard"
-
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
+import { MdAdd } from 'react-icons/md';
+import Modal from "react-modal"
+import AddEditTravelStory from "./AddEditTravelStory"
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
   const [userInfo, setUserInfo] = useState(null)
   const [allStories, setAllStories] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [openAddEditModal, setOpenAddEditModal] = useState({
+    isShown: false,
+    type: "add",
+    data: null
+  })
 
 
   const checkLoggedIN = async() =>{
     try {
      const user = await axiosInstance("/user")
      setUserInfo(user.data.user)
- getAlltravelStories()
+     await getAlltravelStories()
      setIsLoggedIn(true)
     } catch (error) {
       setUserInfo(null)
@@ -45,6 +54,7 @@ const Home = () => {
     await axiosInstance.put(`/update-is-favourite/${storyData._id}`,{
       "isFavourite": storyData.isFavourite
     })
+    toast.success("Story Updated Successfully")
     getAlltravelStories()
     setTimeout(() => {
       setIsLoading(false)
@@ -63,7 +73,7 @@ const Home = () => {
     {!isLoggedIn?<NoLoggedIn /> :(
       <>
       <Navbar userInfo={userInfo} />
-      <div className='container mx-18 py-10'>
+      <div className='container mx-16 py-10'>
       <div className='flex gap-7'>
 {isLoading? <Loader2 />:(
   <div className='flex-1'>
@@ -87,7 +97,7 @@ const Home = () => {
       })}
     </div>
   ) : (
-    <Loader2 />
+    <div className="text-center py-4">No travel stories found.</div>
   )}
 </div>
 )}
@@ -95,6 +105,27 @@ const Home = () => {
   <div className='w-[320px]'></div>
       </div>
       </div>
+
+      <Modal 
+  isOpen={openAddEditModal.isShown}
+  onRequestClose={() => setOpenAddEditModal({ isShown: false, type: 'add', data: null })}
+  style={{ overlay: { backgroundColor: "rgba(0,0,0,0.2)", zIndex: 999 } }}
+  className="modal-box custom-scrollbar2"
+>
+  <AddEditTravelStory 
+    type={openAddEditModal.type} 
+    storyInfo={openAddEditModal.data} 
+    onClose={() => setOpenAddEditModal({ isShown: false, type: 'add', data: null })}
+    getAllTravelStories={getAlltravelStories} 
+  />
+</Modal>
+
+    <button className='w-16 h-16 flex items-center justify-center rounded-full bg-[#05B6D3] hover:bg-cyan-400 fixed right-10 bottom-10' onClick={()=>(
+      setOpenAddEditModal({isShown: true, type:"add", data: null})
+    )}>
+      <MdAdd className='text-[32px] text-white' />
+    </button>
+      <ToastContainer />
       </>
     )}
     </>
