@@ -45,7 +45,10 @@ const Home = () => {
     await axiosInstance.put(`/update-is-favourite/${storyData._id}`,{
       "isFavourite": storyData.isFavourite
     })
-    setIsLoading(false)
+    getAlltravelStories()
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 400);
   }
 
   useEffect(() => {
