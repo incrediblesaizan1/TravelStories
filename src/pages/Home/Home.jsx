@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosInstance } from "../../utils/axiosInstance";
-import Loader from "../../components/common/Loader"
-import Loaderplain from "../../components/common/Loaderplain"
+import Loader2 from "../../components/common/Loader2"
 import NoLoggedIn from "../../components/common/NoLoggedIn"
 import Navbar from '../../components/common/Navbar';
 import TravelStoryCard from "../../components/common/TravelStoryCard"
@@ -11,6 +10,7 @@ const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
   const [userInfo, setUserInfo] = useState(null)
   const [allStories, setAllStories] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
 
   const checkLoggedIN = async() =>{
@@ -29,9 +29,10 @@ const Home = () => {
     try {
       const response = await axiosInstance.get("/get-user-travelStories")
       setAllStories(response.data.stories)
-  
+      setIsLoading(false)
     } catch (error) {
       console.log("An unexpected error occurred while fetching travel stories.")
+      setIsLoading(false)
     }
   }
 
@@ -39,23 +40,20 @@ const Home = () => {
   const handleViewStory = (data) =>{}
 
   const updateIsFavorite = async(storyData) =>{
-    const storyId = storyData._id 
-    try {
-      const response =  await axiosInstance.put(`/update-is-favourite/${storyId}`, {
-        isFavourite: !storyData.isFavourite
-      })
-     console.log(storyData.isFavourite)
-    } catch (error) {
-      console.log("An unexpected error occurred, Please try again.")
-    }
+    setIsLoading(true)
+    storyData.isFavourite = !storyData.isFavourite; 
+    await axiosInstance.put(`/update-is-favourite/${storyData._id}`,{
+      "isFavourite": storyData.isFavourite
+    })
+    setIsLoading(false)
   }
 
   useEffect(() => {
   checkLoggedIN()
-  console.log(allStories)
-  }, [])
+  }, [updateIsFavorite])
 
-  if (isLoggedIn === null) return <Loader />
+  
+  if (isLoggedIn === null) return <Loader2 />
 
   return (
     <>
@@ -64,19 +62,32 @@ const Home = () => {
       <Navbar userInfo={userInfo} />
       <div className='container mx-18 py-10'>
       <div className='flex gap-7'>
-{!isLoggedIn?"":(<div className='flex-1'>
-  {allStories.length > 0?(
-    <div className=' grid grid-cols-3 gap-4 w-[90vw]'>
-      {allStories.map((item)=>{
-        return <TravelStoryCard key={item._id} imgUrl={item.imageUrl
-        } title={item.title} story={item.story} date={item.visitedDate} visitedLocation={item.visitedLocation} isFavourite={item.isFavourite} onEdit={()=> handleEdit(item)} onClick={()=> handleViewStory(item)} onFavouriteClick={()=> updateIsFavorite(item)} />
+{isLoading? <Loader2 />:(
+  <div className='flex-1'>
+  {allStories.length > 0 ? (
+    <div className='grid grid-cols-3 gap-4 w-[90vw]'>
+      {allStories.map((item) => {
+        return (
+          <TravelStoryCard
+            key={item._id}
+            imgUrl={item.imageUrl}
+            title={item.title}
+            story={item.story}
+            date={item.visitedDate}
+            visitedLocation={item.visitedLocation}
+            isFavourite={item.isFavourite}
+            onEdit={() => handleEdit(item)}
+            onClick={() => handleViewStory(item)}
+            onFavouriteClick={() => updateIsFavorite(item)}
+          />
+        );
       })}
     </div>
-    
-  ):(
-    "Loading..."
+  ) : (
+    <Loader2 />
   )}
-</div>)}
+</div>
+)}
 
   <div className='w-[320px]'></div>
       </div>

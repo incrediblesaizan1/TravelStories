@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import background from "../../assets/XSe80ORCzHU0rP2rjPdXX.png";
 import PasswordInput from "../../components/input/PasswordInput";
 import { axiosInstance } from "../../utils/axiosInstance";
-import Loaderplain from "../../components/common/Loaderplain";
+import Loader2 from "../../components/common/Loader2";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ const Login = () => {
             <button type="submit" className="btn-primary">
               LOGIN
             </button>
-            {isLoading && <Loaderplain />}
+            {isLoading && <Loader2 />}
             <p className="text-xs text-slate-500 text-center my-4">Or</p>
             <button
               type="button"

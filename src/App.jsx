@@ -4,7 +4,7 @@ import { axiosInstance } from './utils/axiosInstance';
 import Login from "./pages/Auth/Login"
 import SignUp from "./pages/Auth/SignUp"
 import Home from "./pages/Home/Home"
-import Loader from "./components/common/Loader"
+import Loader2 from "./components/common/Loader2"
 
 
 function App() {
@@ -54,7 +54,7 @@ const Root = () =>{
   }, [])
   
   if(isLoading){
-    return <Loader />
+    return <Loader2 />
   }
   
   return isAuthenticated? <Navigate to="/dashboard" />:  <Navigate to="login" />

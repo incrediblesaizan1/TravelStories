@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; //
 import background from "../../assets/7h9RE3z9qOfzaZypTPSpP.avif";
 import PasswordInput from "../../components/input/PasswordInput"
 import {axiosInstance} from "../../utils/axiosInstance"
-import Loaderplain from "../../components/common/Loaderplain"
+import Loader2 from "../../components/common/Loader2"
 import {validateEmail} from "../../utils/helper"
 
 
@@ -88,7 +88,7 @@ const SignUp = () => {
             {error? <p className="text-red-500 text-xs pb-1">{error}</p>: ""}
 
             <button type="submit" className="btn-primary btn-light">Create Account</button>
-            {isLoading && <Loaderplain />}
+            {isLoading && <Loader2 />}
 
             <p className="text-xs text-slate-500 text-center my-4">Or</p>
 
