@@ -50,7 +50,7 @@ const Home = () => {
 
   useEffect(() => {
   checkLoggedIN()
-  }, [updateIsFavorite])
+  }, [])
 
   
   if (isLoggedIn === null) return <Loader2 />
