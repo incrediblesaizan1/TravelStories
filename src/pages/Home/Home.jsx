@@ -28,7 +28,7 @@ const Home = () => {
   const getAlltravelStories =  async() =>{
     try {
       const response = await axiosInstance.get("/get-user-travelStories")
-      setAllStories(response.data.stories)
+      setAllStories(response.data.stories.reverse())
       setIsLoading(false)
     } catch (error) {
       console.log("An unexpected error occurred while fetching travel stories.")
