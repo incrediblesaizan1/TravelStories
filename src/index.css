@@ -1,6 +1,15 @@
 @import "tailwindcss";
+  .rdp-root{
+    --rdp-accent-color: #01b0cb;
+    --rdp-accent-background-color: #dffbff;
+    --rdp-day_button-border-radius: 8px;
+    --rdp-selected-font: bold medium var(--rdp-font-family)
+  }
+
 
 @layer base{
+
+
    body{
     background-color: #fdfeff;
     overflow-x: hidden;
@@ -57,7 +66,7 @@
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb{
-    background-color: #838383;
+    background-color: #05B6D3;
     width: 0px;
     border-radius: 10px;
   }
@@ -78,7 +87,7 @@
   }
   
   .custom-scrollbar2::-webkit-scrollbar-thumb{
-    background-color: #838383;
+    background-color: #05B6D3;
     width: 5px;
     border-radius: 10px;
   }
