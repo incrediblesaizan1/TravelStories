@@ -75,7 +75,7 @@ const Home = () => {
       ) : (
         <>
           <Navbar userInfo={userInfo} />
-          <div className="container mx-16 py-10">
+          <div className="container mx-22 py-10">
             <div className="flex gap-7">
               {isLoading ? (
                 <Loader2 />
@@ -101,7 +101,7 @@ const Home = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="text-center py-4">
+                    <div className="text-center mx-auto py-4">
                       No travel stories found.
                     </div>
                   )}
