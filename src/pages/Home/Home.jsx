@@ -11,6 +11,7 @@ import Modal from "react-modal";
 Modal.setAppElement('#root');
 import AddEditTravelStory from "./AddEditTravelStory";
 import ViewTravelStory from "./ViewTravelStory"
+import EmptyCard from "../../components/common/EmptyCard";
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -112,9 +113,7 @@ const Home = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="text-center mx-auto py-4">
-                      No travel stories found.
-                    </div>
+                   <EmptyCard  message="Start creating your first Travel Story! Click the 'ADD' button to join down your thoughts, ideas, and memories. Let's get started!  " />
                   )}
                 </div>
               )}
@@ -198,7 +197,6 @@ const Home = () => {
   draggable
   pauseOnHover
   theme="light"
-  // transition={Bounce}
   />
         </>
       )}
