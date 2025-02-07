@@ -169,7 +169,7 @@ const Home = () => {
             setOpenViewModal({
               isShown: false
             })
-            toast.dark("Story Deleted Successfully");
+            toast.error("Story Deleted Successfully");
             setIsLoading(false)
            }} />
           </Modal>
@@ -184,7 +184,7 @@ const Home = () => {
           </button>
 
           <ToastContainer
-  position="top-center"
+  position="top-right"
   autoClose={3000}
   hideProgressBar={false}
   newestOnTop={true}
