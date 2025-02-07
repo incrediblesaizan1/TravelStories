@@ -29,11 +29,17 @@ const AddEditTravelStory = ({
   const updateTravelStory = async() =>{
     try {
       setIsLoading(true)
-      let imageUrl = ""
+      let imageUrl = storyInfo.imageUrl
 
-      if(storyImg){
-        const imgUploadRes = await uploadImage(storyImg)
-        imageUrl = imgUploadRes.imageUrl || "";
+      if(storyImg && storyImg !== storyInfo.imageUrl){
+        const imgUploadRes = await uploadImage(storyImg) 
+        if(imgUploadRes && imgUploadRes.imageUrl){
+          imageUrl = imgUploadRes.imageUrl ;
+        }
+      }else if (!storyImg){
+        setError("Please upload a image.")
+        setIsLoading(false)
+        return
       }
      
       const response = await axiosInstance.put(`edit-travelStory/${storyInfo._id}`,{
@@ -71,6 +77,10 @@ const AddEditTravelStory = ({
       if(storyImg){
         const imgUploadRes = await uploadImage(storyImg)
         imageUrl = imgUploadRes.imageUrl || "";
+      }else if (!storyImg){
+        setError("Please upload a image.")
+        setIsLoading(false)
+        return
       }
      
       const response = await axiosInstance.post("/travelStory",{
@@ -89,7 +99,7 @@ const AddEditTravelStory = ({
         onClose()
       }
       setIsLoading(false)
-    } catch (error) {
+    }catch (error) {
       if(error.response && error.response.data && error.response.data.message){
         setError(error.response.data.message)
       }else{
