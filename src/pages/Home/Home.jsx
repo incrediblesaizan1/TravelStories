@@ -163,14 +163,18 @@ const Home = () => {
             })
                       handleEdit(openViewModal.data || null)
            }} onDeleteClick={async()=>{
-            setIsLoading(true)
-            await axiosInstance.delete(`/delete-travelStory/${openViewModal.data._id}`)
-            getAlltravelStories()
-            setOpenViewModal({
-              isShown: false
-            })
-            toast.error("Story Deleted Successfully");
-            setIsLoading(false)
+            try {
+              setIsLoading(true)
+              await axiosInstance.delete(`/delete-travelStory/${openViewModal.data._id}`)
+              getAlltravelStories()
+              setOpenViewModal({
+                isShown: false
+              })
+              toast.error("Story Deleted Successfully");
+              setIsLoading(false)
+            } catch (error) {
+              console.log(error.message || "Something went wrong while deleting the story.")
+            }
            }} />
           </Modal>
 

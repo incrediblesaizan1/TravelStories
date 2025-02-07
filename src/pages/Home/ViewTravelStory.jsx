@@ -4,7 +4,6 @@ import { GrMapLocation } from 'react-icons/gr'
 import { MdClose, MdDeleteOutline, MdUpdate } from 'react-icons/md'
 
 const ViewTravelStory = ({storyInfo,onClose,onEditClick,onDeleteClick}) => {
-  // console.log(storyInfo.story)
   return (
     <div className='relative'>
       <div className='flex items-center justify-end'>
