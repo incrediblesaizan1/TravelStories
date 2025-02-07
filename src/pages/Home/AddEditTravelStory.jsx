@@ -17,16 +17,50 @@ const AddEditTravelStory = ({
   onClose,
   getAllTravelStories,
 }) => {
-  const [visitedDate, setVisitedDate] = useState(null);
-  const [title, setTitle] = useState("");
-  const [storyImg, setStoryImg] = useState(null);
-  const [story, setStory] = useState("");
-  const [visitedLocation, setVisitedLocation] = useState([]);
+  const [visitedDate, setVisitedDate] = useState(storyInfo?.visitedDate || null );
+  const [title, setTitle] = useState(storyInfo?.title || "");
+  const [storyImg, setStoryImg] = useState(storyInfo?.imageUrl || null);
+  const [story, setStory] = useState(storyInfo?.story || "");
+  const [visitedLocation, setVisitedLocation] = useState(storyInfo?.visitedLocation ||[]);
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false);
 
 
-  const updateTravelStory = () =>{}
+  const updateTravelStory = async() =>{
+    try {
+      setIsLoading(true)
+      let imageUrl = ""
+
+      if(storyImg){
+        const imgUploadRes = await uploadImage(storyImg)
+        imageUrl = imgUploadRes.imageUrl || "";
+      }
+     
+      const response = await axiosInstance.put(`edit-travelStory/${storyInfo._id}`,{
+
+          "title":title,
+          "story": story,
+          "visitedLocation":visitedLocation,
+          "imageUrl": imageUrl || "",
+          "visitedDate": visitedDate ? moment(visitedDate).valueOf():moment().valueOf()
+
+      })
+
+      if(response.data && response.data.story){
+        toast.success("Story Updated Successfully")
+        getAllTravelStories()
+        onClose()
+      }
+      setIsLoading(false)
+    } catch (error) {
+      if(error.response && error.response.data && error.response.data.message){
+        setError(error.response.data.message)
+      }else{
+        setError("An unexpected error occured. Please try again.")
+      }
+      setIsLoading(false)
+    }
+  }
 
 
   const addNewTravelStory = async() =>{
@@ -56,6 +90,11 @@ const AddEditTravelStory = ({
       }
       setIsLoading(false)
     } catch (error) {
+      if(error.response && error.response.data && error.response.data.message){
+        setError(error.response.data.message)
+      }else{
+        setError("An unexpected error occured. Please try again.")
+      }
       setIsLoading(false)
     }
   }
@@ -89,7 +128,7 @@ const AddEditTravelStory = ({
   return (
     <>
    {isLoading? <Loader2 /> :(
-     <div>
+     <div className="relative">
      <div className="flex items-center justify-between">
        <h5 className="text-xl font-medium text-slate-700">
          {type === "add" ? "Add Story" : "Update Story"}

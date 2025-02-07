@@ -8,7 +8,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdAdd } from "react-icons/md";
 import Modal from "react-modal";
+Modal.setAppElement('#root');
 import AddEditTravelStory from "./AddEditTravelStory";
+import ViewTravelStory from "./ViewTravelStory"
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -22,6 +24,11 @@ const Home = () => {
     data: null,
   });
 
+  const [openViewModal, setOpenViewModal] = useState({
+    isShown: false,
+    data: null
+  })
+  
   const checkLoggedIN = async () => {
     try {
       const user = await axiosInstance("/user");
@@ -47,8 +54,13 @@ const Home = () => {
     }
   };
 
-  const handleEdit = (data) => {};
-  const handleViewStory = (data) => {};
+  const handleEdit = (data) => {
+    setOpenAddEditModal({isShown: true, type:"edit", data:data})
+  };
+
+  const handleViewStory = (data) => {
+  setOpenViewModal({isShown: true, data: data})  
+  };
 
   const updateIsFavorite = async (storyData) => {
     setBtnDisable(true)
@@ -92,7 +104,6 @@ const Home = () => {
                             date={item.visitedDate}
                             visitedLocation={item.visitedLocation}
                             isFavourite={item.isFavourite}
-                            onEdit={() => handleEdit(item)}
                             onClick={() => handleViewStory(item)}
                             onFavouriteClick={() => updateIsFavorite(item)}
                             btnDisable={btnDisable}
@@ -118,7 +129,7 @@ const Home = () => {
               setOpenAddEditModal({ isShown: false, type: "add", data: null })
             }
             style={{
-              overlay: { backgroundColor: "rgba(0,0,0,0.2)", zIndex: 999 },
+              overlay: { backgroundColor: "rgba(0,0,0,0.2)", zIndex: 50 },
             }}
             className="modal-box custom-scrollbar2"
           >
@@ -132,6 +143,37 @@ const Home = () => {
             />
           </Modal>
 
+          <Modal
+            isOpen={openViewModal.isShown}
+            onRequestClose={() =>
+              setOpenViewModal({ isShown: false, type: "add", data: null })
+            }
+            style={{
+              overlay: { backgroundColor: "rgba(0,0,0,0.2)", zIndex: 50 },
+            }}
+            className="modal-box custom-scrollbar2 outline-none "
+          >
+           <ViewTravelStory storyInfo={openViewModal.data || null} onClose={()=>{
+            setOpenViewModal({
+    isShown: false,
+            })
+           }} onEditClick={()=>{
+            setOpenViewModal({
+              isShown: false,
+            })
+                      handleEdit(openViewModal.data || null)
+           }} onDeleteClick={async()=>{
+            setIsLoading(true)
+            await axiosInstance.delete(`/delete-travelStory/${openViewModal.data._id}`)
+            getAlltravelStories()
+            setOpenViewModal({
+              isShown: false
+            })
+            toast.dark("Story Deleted Successfully");
+            setIsLoading(false)
+           }} />
+          </Modal>
+
           <button
             className="w-16 h-16 flex items-center justify-center rounded-full bg-[#05B6D3] hover:bg-cyan-400 fixed right-10 bottom-10"
             onClick={() =>
@@ -140,7 +182,20 @@ const Home = () => {
           >
             <MdAdd className="text-[32px] text-white" />
           </button>
-          <ToastContainer />
+
+          <ToastContainer
+  position="top-center"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop={true}
+  closeOnClick={false}
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
+  // transition={Bounce}
+  />
         </>
       )}
     </>
