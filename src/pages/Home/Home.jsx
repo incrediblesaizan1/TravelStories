@@ -15,6 +15,7 @@ const Home = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [allStories, setAllStories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [btnDisable, setBtnDisable] = useState(false)
   const [openAddEditModal, setOpenAddEditModal] = useState({
     isShown: false,
     type: "add",
@@ -50,14 +51,14 @@ const Home = () => {
   const handleViewStory = (data) => {};
 
   const updateIsFavorite = async (storyData) => {
-    setIsLoading(true);
+    setBtnDisable(true)
     storyData.isFavourite = !storyData.isFavourite;
     await axiosInstance.put(`/update-is-favourite/${storyData._id}`, {
       isFavourite: storyData.isFavourite,
     });
     toast.success("Story Updated Successfully");
     getAlltravelStories();
-      setIsLoading(false);
+    setBtnDisable(false)
   };
 
   useEffect(() => {
@@ -94,6 +95,7 @@ const Home = () => {
                             onEdit={() => handleEdit(item)}
                             onClick={() => handleViewStory(item)}
                             onFavouriteClick={() => updateIsFavorite(item)}
+                            btnDisable={btnDisable}
                           />
                         );
                       })}
