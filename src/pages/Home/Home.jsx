@@ -57,9 +57,7 @@ const Home = () => {
     });
     toast.success("Story Updated Successfully");
     getAlltravelStories();
-    setTimeout(() => {
       setIsLoading(false);
-    }, 400);
   };
 
   useEffect(() => {
