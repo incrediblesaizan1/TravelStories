@@ -14,3 +14,15 @@ export const getInitials = (name) =>{
   }
 return initals.toUpperCase()
 }
+
+export const getEmptyCardMessage = (filterType) =>{
+  if(filterType){
+    if(filterType === "search"){
+      return "Oops! No stories found matching your search"
+    } else if(filterType === "date"){
+      return "No stories found in the given date range"
+    }else{
+      return "Start creating your first Travel Story! Click the 'ADD' button to join down your thoughts, ideas, and memories. Let's get started!"
+    }
+  }
+}
