@@ -19,6 +19,8 @@ const Home = () => {
   const [allStories, setAllStories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [btnDisable, setBtnDisable] = useState(false)
+  const [searchQuery,setSearchQuery] = useState("")
+  const [ filterType,setFilterType] = useState("")
   const [openAddEditModal, setOpenAddEditModal] = useState({
     isShown: false,
     type: "add",
@@ -74,6 +76,29 @@ const Home = () => {
     setBtnDisable(false)
   };
 
+
+    const onSearchStory = async(query)=>{
+      try{
+        const response = await axiosInstance.get("/search",{
+          params:{
+            query
+          }
+        })
+        if(response.data && response.data.stories){
+          setFilterType("Search")
+          setAllStories(response.data.stories)
+        }
+      }
+      catch(error){
+        console.log("An unexpected Error Occured:",error)
+      }
+    }
+    
+    const handleClearSearch = () =>{
+      setFilterType("")
+      getAlltravelStories()
+    }
+
   useEffect(() => {
     checkLoggedIN();
   }, []);
@@ -86,7 +111,7 @@ const Home = () => {
         <NoLoggedIn />
       ) : (
         <>
-          <Navbar userInfo={userInfo} />
+          <Navbar userInfo={userInfo} searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearchNote={onSearchStory} handleClearSearch={handleClearSearch} />
           <div className="container mx-22 py-10">
             <div className="flex gap-7">
               {isLoading ? (
