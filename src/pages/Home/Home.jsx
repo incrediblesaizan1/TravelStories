@@ -98,7 +98,7 @@ const Home = () => {
         },
       });
       if (response.data && response.data.stories) {
-        setFilterType("Search");
+        setFilterType("search");
         setAllStories(response.data.stories);
       }
     } catch (error) {
