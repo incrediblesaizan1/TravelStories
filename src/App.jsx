@@ -1,65 +1,69 @@
-import React,  { useState, useEffect } from 'react'
-import {createBrowserRouter, Navigate,useNavigate, RouterProvider} from "react-router-dom";
-import { axiosInstance } from './utils/axiosInstance';
-import Login from "./pages/Auth/Login"
-import SignUp from "./pages/Auth/SignUp"
-import Home from "./pages/Home/Home"
-import Loader2 from "./components/common/Loader2"
-
+import React, { useState, useEffect } from "react";
+import {
+  createBrowserRouter,
+  Navigate,
+  useNavigate,
+  RouterProvider,
+} from "react-router-dom";
+import { axiosInstance } from "./utils/axiosInstance";
+import Login from "./pages/Auth/Login";
+import SignUp from "./pages/Auth/SignUp";
+import Home from "./pages/Home/Home";
+import Loader2 from "./components/common/Loader2";
 
 function App() {
-
-
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Root />
+      path: "/",
+      element: <Root />,
     },
     {
-      path: '/dashboard',
-      element: <Home />
+      path: "/dashboard",
+      element: <Home />,
     },
     {
-      path: '/login',
-      element: <Login />
+      path: "/login",
+      element: <Login />,
     },
     {
-      path: '/signup',
-      element: <SignUp />
+      path: "/signup",
+      element: <SignUp />,
     },
-  ])
+  ]);
 
   return (
     <>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-const Root = () =>{
-  const [isAuthenticated, setIsAuthenticated] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+const Root = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const checkAuth = async() =>{
+    const checkAuth = async () => {
       try {
-        await axiosInstance("/user")
+        await axiosInstance("/user");
         setIsLoading(false);
-        setIsAuthenticated(true)
+        setIsAuthenticated(true);
       } catch (error) {
         setIsLoading(false);
-        setIsAuthenticated(false)
+        setIsAuthenticated(false);
       }
-    }
-     checkAuth()
-  }, [])
-  
-  if(isLoading){
-    return <Loader2 />
+    };
+    checkAuth();
+  }, []);
+
+  if (isLoading) {
+    return <Loader2 />;
   }
-  
-  return isAuthenticated? <Navigate to="/dashboard" />:  <Navigate to="login" />
 
-}
+  return isAuthenticated ? (
+    <Navigate to="/dashboard" />
+  ) : (
+    <Navigate to="login" />
+  );
+};
 
-
-export default App
+export default App;

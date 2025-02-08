@@ -1,5 +1,5 @@
-import React from 'react';
-import { HashLoader } from 'react-spinners';
+import React from "react";
+import { HashLoader } from "react-spinners";
 
 const Loader2 = () => {
   return (

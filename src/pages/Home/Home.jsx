@@ -26,7 +26,7 @@ const Home = () => {
   const [btnDisable, setBtnDisable] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("");
-  const [dateRange, setDateRange] = useState({from:null, to:null})
+  const [dateRange, setDateRange] = useState({ from: null, to: null });
   const [openAddEditModal, setOpenAddEditModal] = useState({
     isShown: false,
     type: "add",
@@ -79,12 +79,12 @@ const Home = () => {
     });
     toast.success("Story Updated Successfully");
 
-    if(filterType === "search" && searchQuery){
-      onSearchStory(searchQuery)
-    }else if(filterType === "date"){
-      filterStoriesByDate(dateRange)
-    }else{
-      getAlltravelStories()
+    if (filterType === "search" && searchQuery) {
+      onSearchStory(searchQuery);
+    } else if (filterType === "date") {
+      filterStoriesByDate(dateRange);
+    } else {
+      getAlltravelStories();
     }
     getAlltravelStories();
     setBtnDisable(false);
@@ -111,37 +111,36 @@ const Home = () => {
     getAlltravelStories();
   };
 
-  const filterStoriesByDate = async(day) =>{
-try {
-  const startDate = day.from? moment(day.from).valueOf(): null;
-  const endDate = day.to ? moment(day.to).valueOf() :null
+  const filterStoriesByDate = async (day) => {
+    try {
+      const startDate = day.from ? moment(day.from).valueOf() : null;
+      const endDate = day.to ? moment(day.to).valueOf() : null;
 
-  if(startDate && endDate){
-    const response = await axiosInstance.get("/travel-stories-filter",{
-      params:{startDate, endDate}
-    })
-    
-    if(response.data && response.data.stories){
-      setFilterType("date")
-      setAllStories(response.data.stories)
+      if (startDate && endDate) {
+        const response = await axiosInstance.get("/travel-stories-filter", {
+          params: { startDate, endDate },
+        });
+
+        if (response.data && response.data.stories) {
+          setFilterType("date");
+          setAllStories(response.data.stories);
+        }
+      }
+    } catch (error) {
+      console.log("An unexpected Error Occured:", error);
     }
-      
-    }
-} catch (error) {
-  console.log("An unexpected Error Occured:", error);
-}
-  }
+  };
 
-  const handleDayClick = (day) =>{
-    setDateRange(day)
-    filterStoriesByDate(day)
-  }
+  const handleDayClick = (day) => {
+    setDateRange(day);
+    filterStoriesByDate(day);
+  };
 
-  const resetFilter = () =>{
-    setDateRange({from: null, to:null})
-    setFilterType("")
-    getAlltravelStories()
-  }
+  const resetFilter = () => {
+    setDateRange({ from: null, to: null });
+    setFilterType("");
+    getAlltravelStories();
+  };
 
   useEffect(() => {
     checkLoggedIN();
@@ -163,10 +162,13 @@ try {
             handleClearSearch={handleClearSearch}
           />
           <div className="container mx-6 py-10">
-
-          <FilterInfoTitle filterType={filterType} filterDates={dateRange} onClear={()=>{
-            resetFilter()
-          }} />
+            <FilterInfoTitle
+              filterType={filterType}
+              filterDates={dateRange}
+              onClear={() => {
+                resetFilter();
+              }}
+            />
 
             <div className="flex gap-7">
               {isLoading ? (
@@ -193,30 +195,29 @@ try {
                       })}
                     </div>
                   ) : (
-                    <EmptyCard
-                    message={getEmptyCardMessage(filterType)}
-                      />
+                    <EmptyCard message={getEmptyCardMessage(filterType)} />
                   )}
                 </div>
               )}
 
               <div className="w-[336px] relative right-8">
                 <div className="bg-white border border-slate-200 shadow-lg shadow-slate-200/60 rounded-lg">
-              <div className="p-4"> 
-              <DayPicker
-  captionLayout="dropdown-buttons"
-  mode="range"
-  selected={dateRange}
-  onSelect={handleDayClick}
-  pagedNavigation
-  style={{
-    '--rdp-accent-color': '#01b0cb',
-    '--rdp-accent-background-color': '#dffbff',
-    '--rdp-day_button-border-radius': '8px',
-    '--rdp-selected-font': 'bold medium var(--rdp-font-family)',
-  }}
-/>
-              </div>
+                  <div className="p-4">
+                    <DayPicker
+                      captionLayout="dropdown-buttons"
+                      mode="range"
+                      selected={dateRange}
+                      onSelect={handleDayClick}
+                      pagedNavigation
+                      style={{
+                        "--rdp-accent-color": "#01b0cb",
+                        "--rdp-accent-background-color": "#dffbff",
+                        "--rdp-day_button-border-radius": "8px",
+                        "--rdp-selected-font":
+                          "bold medium var(--rdp-font-family)",
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

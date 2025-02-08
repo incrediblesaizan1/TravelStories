@@ -27,7 +27,7 @@ const DateSelector = ({ date, setDate }) => {
             onClick={() => {
               setOpenDatePicker(false);
             }}
-          > 
+          >
             <MdClose className="text-xl text-sky-600 overflow-hidden" />
           </button>
           <DayPicker
@@ -36,10 +36,10 @@ const DateSelector = ({ date, setDate }) => {
             selected={date}
             onSelect={setDate}
             style={{
-              '--rdp-accent-color': '#01f0cb',
-              '--rdp-accent-background-color': '#dffbff',
-              '--rdp-day_button-border-radius': '8px',
-              '--rdp-selected-font': 'bold medium var(--rdp-font-family)',
+              "--rdp-accent-color": "#01f0cb",
+              "--rdp-accent-background-color": "#dffbff",
+              "--rdp-day_button-border-radius": "8px",
+              "--rdp-selected-font": "bold medium var(--rdp-font-family)",
             }}
             pagedNavigation
           />

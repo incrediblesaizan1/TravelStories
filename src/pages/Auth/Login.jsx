@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import background from "../../assets/XSe80ORCzHU0rP2rjPdXX.png";
 import PasswordInput from "../../components/input/PasswordInput";
 import { axiosInstance } from "../../utils/axiosInstance";
@@ -37,7 +37,9 @@ const Login = () => {
     } catch (err) {
       setIsLoading(false);
       console.error("Login error:", err.response?.data || err.message);
-      setError(err.response?.data?.message || "Something went wrong, please try again.");
+      setError(
+        err.response?.data?.message || "Something went wrong, please try again."
+      );
     }
   };
 

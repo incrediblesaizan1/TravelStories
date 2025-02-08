@@ -1,99 +1,92 @@
 @import "tailwindcss";
-  .rdp-root{
-    --rdp-accent-color: #01b0cb;
-    --rdp-accent-background-color: #dffbff;
-    --rdp-day_button-border-radius: 8px;
-    --rdp-selected-font: bold medium var(--rdp-font-family)
-  }
+.rdp-root {
+  --rdp-accent-color: #01b0cb;
+  --rdp-accent-background-color: #dffbff;
+  --rdp-day_button-border-radius: 8px;
+  --rdp-selected-font: bold medium var(--rdp-font-family);
+}
 
-
-@layer base{
-
-
-   body{
+@layer base {
+  body {
     background-color: #fdfeff;
     overflow-x: hidden;
     font-family: "Poppins", serif;
     font-weight: 500;
-    
-   }
+  }
 }
 
-@layer components{
-    .input-box{
-        @apply w-full text-sm bg-cyan-600/5 rounded px-5 py-5 mb-4 outline-none;
-    }
-    .btn-primary{
-        @apply w-full text-sm font-medium text-white bg-cyan-500 shadow-lg shadow-cyan-200/50 p-[10px] rounded-full my-1 hover:bg-cyan-100 hover:text-[#05B6D3] cursor-pointer
-    }
+@layer components {
+  .input-box {
+    @apply w-full text-sm bg-cyan-600/5 rounded px-5 py-5 mb-4 outline-none;
+  }
+  .btn-primary {
+    @apply w-full text-sm font-medium text-white bg-cyan-500 shadow-lg shadow-cyan-200/50 p-[10px] rounded-full my-1 hover:bg-cyan-100 hover:text-[#05B6D3] cursor-pointer;
+  }
 
-    .btn-light{
-        @apply bg-cyan-50 text-[#05B6D3] shadow-cyan-100 border-cyan-100 border-2 hover:bg-[#05B6D3] hover:text-white
-    }
+  .btn-light {
+    @apply bg-cyan-50 text-[#05B6D3] shadow-cyan-100 border-cyan-100 border-2 hover:bg-[#05B6D3] hover:text-white;
+  }
 
-    .login-ui-box{
-        @apply w-80 h-[450px] rounded-full bg-[#05B6D3] absolute rotate-45
-    }
-    .icon-btn{
-        @apply text-[22px] text-slate-300 cursor-pointer hover:text-red-500
-    }
+  .login-ui-box {
+    @apply w-80 h-[450px] rounded-full bg-[#05B6D3] absolute rotate-45;
+  }
+  .icon-btn {
+    @apply text-[22px] text-slate-300 cursor-pointer hover:text-red-500;
+  }
 
-    .modal-box{
-        @apply w-[80vw] md:w-[40%] h-[80vh] bg-white rounded-lg mx-auto mt-14 p-5 overflow-y-scroll  z-50
-    }
+  .modal-box {
+    @apply w-[80vw] md:w-[40%] h-[80vh] bg-white rounded-lg mx-auto mt-14 p-5 overflow-y-scroll  z-50;
+  }
 
-    .btn-small{
-        @apply flex items-center gap-1 text-xs font-medium bg-cyan-50 text-[#05B6D3] shadow-cyan-100/0 border border-cyan-100 hover:bg-[#05B6D3] hover:text-white rounded px-3 py-[3px] cursor-pointer
-    }
+  .btn-small {
+    @apply flex items-center gap-1 text-xs font-medium bg-cyan-50 text-[#05B6D3] shadow-cyan-100/0 border border-cyan-100 hover:bg-[#05B6D3] hover:text-white rounded px-3 py-[3px] cursor-pointer;
+  }
 
-    .btn-delete{
-        @apply bg-rose-50 text-rose-500 shadow-rose-100/0 border border-rose-100 hover:bg-rose-500 hover:text-white
-    }
+  .btn-delete {
+    @apply bg-rose-50 text-rose-500 shadow-rose-100/0 border border-rose-100 hover:bg-rose-500 hover:text-white;
+  }
 
-    .input-label{
-        @apply text-xs text-slate-400
-    }
-
+  .input-label {
+    @apply text-xs text-slate-400;
+  }
 }
 
-@layer components{
-    .custom-scrollbar::-webkit-scrollbar{
-      width: 0px;
-    }
-  
-  .custom-scrollbar::-webkit-scrollbar-track{
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb{
-    background-color: #05B6D3;
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #05b6d3;
     width: 0px;
     border-radius: 10px;
   }
-  
-  .custom-scrollbar-dark::-webkit-scrollbar-thumb{
+
+  .custom-scrollbar-dark::-webkit-scrollbar-thumb {
     background-color: #131314;
   }
-  
+}
+
+@layer components {
+  .custom-scrollbar2::-webkit-scrollbar {
+    width: 4px;
   }
 
-  @layer components{
-    .custom-scrollbar2::-webkit-scrollbar{
-      width: 4px;
-    }
-  
-  .custom-scrollbar2::-webkit-scrollbar-track{
+  .custom-scrollbar2::-webkit-scrollbar-track {
     background: transparent;
   }
-  
-  .custom-scrollbar2::-webkit-scrollbar-thumb{
-    background-color: #05B6D3;
+
+  .custom-scrollbar2::-webkit-scrollbar-thumb {
+    background-color: #05b6d3;
     width: 5px;
     border-radius: 10px;
   }
-  
-  .custom-scrollbar2-dark::-webkit-scrollbar-thumb{
+
+  .custom-scrollbar2-dark::-webkit-scrollbar-thumb {
     background-color: #131314;
   }
-  
-  }
+}
