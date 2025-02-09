@@ -56,5 +56,5 @@ npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
-# Thanks for visiting my Git repository please give me a star and don't for forget to visit my website TravelStory = https://incrediblesaizan1-travel-stories.vercel.app
+## Thanks for visiting my Git repository please give me a star and don't for forget to visit my website TravelStory = https://incrediblesaizan1-travel-stories.vercel.app
 
