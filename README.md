@@ -41,6 +41,13 @@ This is Travel Story app is fully dynamic website in which you can make your por
 git clone https://github.com/incrediblesaizan1/TravelStories
 ```
 
+**Get into the Directory**
+
+```bash
+cd TravelStories
+```
+
+
 **Installation**
 
 Install the project dependencies using npm:
