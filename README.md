@@ -29,7 +29,7 @@ This is Travel Story app is fully dynamic website in which you can make your por
 
 ### Deployed Website
 
-- Live Site URL: [link](https://incrediblesaizan1-travel-stories.vercel.app)
+- Live Site URL: [https://incrediblesaizan1-travel-stories.vercel.app](https://incrediblesaizan1-travel-stories.vercel.app)
 
 
 
