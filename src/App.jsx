@@ -10,6 +10,7 @@ import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Home/Home";
 import Loader2 from "./components/common/Loader2";
+import Feed from "./pages/Home/Feed"
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
     {
       path: "/signup",
       element: <SignUp />,
+    },
+    {
+      path: "/feed",
+      element: <Feed />,
     },
   ]);
 
@@ -62,7 +67,7 @@ const Root = () => {
   return isAuthenticated ? (
     <Navigate to="/dashboard" />
   ) : (
-    <Navigate to="login" />
+    <Navigate to="/feed" />
   );
 };
 

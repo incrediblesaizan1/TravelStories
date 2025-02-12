@@ -34,7 +34,7 @@ const TagInput = ({ tags, setTags }) => {
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="flex items-center gap-2 text-sm text-cyan-600 bg-cyan-200/40 px-3 py-1 rounded"
+              className="flex items-center gap-2 text-sm  text-cyan-300 bg-cyan-900/40 px-3 py-1 rounded"
             >
               <GrMapLocation className="text-sm" />
               {tag}
@@ -49,13 +49,13 @@ const TagInput = ({ tags, setTags }) => {
         <input
           type="text"
           value={inputValue}
-          className="text-sm bg-transparent border px-3 py-2 rounded outline-none"
+          className="text-sm bg-transparent border px-3 py-2 rounded outline-none border-zinc-200 text-zinc-100"
           placeholder="Add Location"
           onChange={handleInputChange}
           onKeyDown={handelKeyDown}
         />
         <button
-          className="w-8 h-8 flex items-center justify-center rounded border border-cyan-500 hover:bg-cyan-500"
+          className="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 hover:bg-cyan-500"
           onClick={addNewTag}
         >
           <MdAdd className="text-2xl text-cyan-500 hover:text-white" />

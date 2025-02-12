@@ -13,8 +13,8 @@ const ViewTravelStory = ({
     <div className="relative">
       <div className="flex items-center justify-end">
         <div>
-          <div className="flex items-center gap-3 bg-cyan-50/50 p-2 rounded-l-lg">
-            <button className="btn-small" onClick={onEditClick}>
+          <div className="flex items-center gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
+            <button className="btn-small border-none outline-none  text-cyan-300 bg-cyan-900/40" onClick={onEditClick}>
               <MdUpdate className="text-lg" /> UPDATE STORY
             </button>
 
@@ -31,7 +31,7 @@ const ViewTravelStory = ({
 
       <div>
         <div className="flex-1 flex flex-col gap-2 py-4">
-          <h1 className="text-2xl text-slate-950">
+          <h1 className="text-2xl text-[rgb(181,181,181)]">
             {storyInfo?.title || "Untitled Story"}
           </h1>
 
@@ -41,7 +41,7 @@ const ViewTravelStory = ({
                 ? moment(storyInfo.visitedDate).format("Do MMM YYYY")
                 : "Unknown Date"}
             </span>
-            <div className="inline-flex items-center gap-2 text-[13px] text-cyan-600 bg-cyan-200/40 rounded px-2 py-1">
+            <div className="inline-flex items-center gap-2 text-[13px]  text-cyan-300 bg-cyan-900/40 rounded px-2 py-1">
               <GrMapLocation className="text-sm" />
               {storyInfo &&
                 storyInfo.visitedLocation.map((item, index) =>
@@ -59,7 +59,7 @@ const ViewTravelStory = ({
         />
 
         <div className="mt-4">
-          <p className="text-sm text-slate-950 leading-6 text-justify whitespace-pre-line">
+          <p className="text-sm text-slate-400 leading-6 text-justify whitespace-pre-line">
             {storyInfo?.story || "No story content available."}
           </p>
         </div>

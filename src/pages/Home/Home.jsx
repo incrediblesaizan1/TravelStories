@@ -153,7 +153,7 @@ const Home = () => {
       {!isLoggedIn ? (
         <NoLoggedIn />
       ) : (
-        <>
+        <div className="bg-[rgb(0,0,0,0.9)]">
           <Navbar
             userInfo={userInfo}
             searchQuery={searchQuery}
@@ -161,7 +161,7 @@ const Home = () => {
             onSearchNote={onSearchStory}
             handleClearSearch={handleClearSearch}
           />
-          <div className="container mx-6 py-10">
+          <div className="container  mx-6 py-10">
             <FilterInfoTitle
               filterType={filterType}
               filterDates={dateRange}
@@ -193,15 +193,15 @@ const Home = () => {
                           />
                         );
                       })}
-                    </div>
+                    </div>  
                   ) : (
                     <EmptyCard message={getEmptyCardMessage(filterType)} />
                   )}
                 </div>
               )}
 
-              <div className="w-[336px] relative right-8">
-                <div className="bg-white border border-slate-200 shadow-lg shadow-slate-200/60 rounded-lg">
+              <div className="w-[336px] h-[90vh] relative right-8">
+                <div className="bg-zinc-600 border border-slate-600 shadow-lg shadow-slate-600/60 rounded-lg">
                   <div className="p-4">
                     <DayPicker
                       captionLayout="dropdown-buttons"
@@ -211,10 +211,9 @@ const Home = () => {
                       pagedNavigation
                       style={{
                         "--rdp-accent-color": "#01b0cb",
-                        "--rdp-accent-background-color": "#dffbff",
-                        "--rdp-day_button-border-radius": "8px",
-                        "--rdp-selected-font":
-                          "bold medium var(--rdp-font-family)",
+                        "--rdp-accent-background-color": "rgb(73,73,73)",
+                        "--rdp-day_button-border-radius": "0px",
+                        "--rdp-selected-font": "bold medium var(--rdp-font-family)",
                       }}
                     />
                   </div>
@@ -231,7 +230,7 @@ const Home = () => {
             style={{
               overlay: { backgroundColor: "rgba(0,0,0,0.2)", zIndex: 50 },
             }}
-            className="modal-box custom-scrollbar2"
+            className="modal-box custom-scrollbar2 bg-[rgb(37,37,37)]"
           >
             <AddEditTravelStory
               type={openAddEditModal.type}
@@ -249,9 +248,9 @@ const Home = () => {
               setOpenViewModal({ isShown: false, type: "add", data: null })
             }
             style={{
-              overlay: { backgroundColor: "rgba(0,0,0,0.2)", zIndex: 50 },
+              overlay: { backgroundColor: "rgba(0,0,0,0.6)", zIndex: 50 },
             }}
-            className="modal-box custom-scrollbar2 outline-none "
+            className="modal-box custom-scrollbar2 bg-[rgb(37,37,37)] outline-none "
           >
             <ViewTravelStory
               storyInfo={openViewModal.data || null}
@@ -289,12 +288,12 @@ const Home = () => {
           </Modal>
 
           <button
-            className="w-16 h-16 flex items-center justify-center rounded-full bg-[#05B6D3] hover:bg-cyan-400 fixed right-10 bottom-10"
+            className="w-16 h-16 flex items-center justify-center rounded-full  bg-[#05B6D3] hover:bg-cyan-400 fixed right-10 bottom-10"
             onClick={() =>
               setOpenAddEditModal({ isShown: true, type: "add", data: null })
             }
           >
-            <MdAdd className="text-[32px] text-white" />
+            <MdAdd className="text-[32px] text-white " />
           </button>
 
           <ToastContainer
@@ -309,7 +308,7 @@ const Home = () => {
             pauseOnHover
             theme="light"
           />
-        </>
+        </div>
       )}
     </>
   );

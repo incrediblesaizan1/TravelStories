@@ -51,11 +51,11 @@ const ImageSelector = ({ image, setImage, handleDeleteImg }) => {
 
       {!image ? (
         <button
-          className="w-full h-[220px] flex flex-col items-center justify-center gap-4 bg-slate-100 rounded cursor-pointer border border-slate-200/50"
+          className="w-full h-[220px] flex flex-col items-center justify-center gap-4 text-slate-300 outline-none bg-zinc-600/20 rounded cursor-pointer border border-slate-200/50"
           onClick={onChooseFile}
         >
-          <div className="w-14 h-14 flex items-center justify-center bg-cyan-50 rounded-full border border-cyan-100">
-            <FaRegFileImage className="text-xl text-cyan-500" />
+          <div className="w-14 h-14 flex items-center bg-zinc-700 justify-center  rounded-full border ">
+            <FaRegFileImage className="text-xl  text-cyan-500" />
           </div>
           <p className="text-sm text-slate-500">Browse image file to upload</p>
         </button>

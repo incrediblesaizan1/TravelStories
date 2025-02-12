@@ -148,27 +148,27 @@ const AddEditTravelStory = ({
       {isLoading ? (
         <Loader2 />
       ) : (
-        <div className="relative">
-          <div className="flex items-center justify-between">
-            <h5 className="text-xl font-medium text-slate-700">
+        <div className="relative bg-[rgb(37,37,37)]">
+          <div className="flex items-center  justify-between">
+            <h5 className="text-xl font-medium  text-slate-400">
               {type === "add" ? "Add Story" : "Update Story"}
             </h5>
             <div>
-              <div className="flex items-center gap-3 bg-cyan-50/50 p-2 rounded-l-lg">
+              <div className="flex  items-center gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
                 {type === "add" ? (
                   <button
-                    className="btn-small"
+                    className="btn-small border-none outline-none  text-cyan-300 bg-cyan-900/40"
                     onClick={handleAddOrUpdateClick}
                   >
-                    <MdAdd className="text-lg" /> ADD STORY
+                    <MdAdd className="text-lg " /> ADD STORY
                   </button>
                 ) : (
                   <>
                     <button
-                      className="btn-small"
+                      className="btn-small border-none outline-none  text-cyan-300 bg-cyan-900/40"
                       onClick={handleAddOrUpdateClick}
                     >
-                      <MdUpdate className="text-lg" /> UPDATE STORY
+                      <MdUpdate className="text-lg " /> UPDATE STORY
                     </button>
                   </>
                 )}
@@ -188,12 +188,12 @@ const AddEditTravelStory = ({
               <label className="input-label">TITLE</label>
               <input
                 type="text"
-                className="text-2xl text-slate-950 outline-none"
+                className="text-2xl text-slate-200 outline-none"
                 placeholder="A day at a great wall"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <div className="my-3">
+              <div className="my-3 ">
                 <DateSelector date={visitedDate} setDate={setVisitedDate} />
               </div>
 
@@ -203,11 +203,11 @@ const AddEditTravelStory = ({
                 handleDeleteImg={handleDeleteStoryImg}
               />
 
-              <div className="flex flex-col gap-2 mt-4">
+              <div className="flex flex-col  gap-2 mt-4">
                 <label className="input-label">STORY</label>
                 <textarea
                   type="text"
-                  className="text-sm resize-none text-slate-950 outline-none bg-slate-100 p-2 roudned"
+                  className="text-sm resize-none text-slate-300 outline-none  bg-zinc-600/20 p-2 roudned"
                   placeholder="Your Story"
                   rows={10}
                   value={story}

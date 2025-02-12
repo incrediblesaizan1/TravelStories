@@ -9,7 +9,7 @@ const DateSelector = ({ date, setDate }) => {
   return (
     <div>
       <button
-        className="inline-flex items-center gap-2 text-[13px] font-medium text-sky-600 bg-sky-200/40 hover:bg-sky-200/70 rounded px-2 py-1 cursor-pointer"
+        className="inline-flex items-center gap-2 text-[13px] font-medium  text-cyan-300 bg-cyan-900/40 hover:bg-sky-200/70 rounded px-2 py-1 cursor-pointer"
         onClick={() => {
           setOpenDatePicker(true);
         }}
