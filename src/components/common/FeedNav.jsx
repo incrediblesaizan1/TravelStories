@@ -39,8 +39,8 @@ const FeedNav = () => {
     </div>
 
           <div className='mr-8'>
-            <button  onClick={() => navigate("/login")} className=' cursor-pointer w-32 relative h-8 border-none outline-none  text-zinc-200 bg-cyan-900/40 rounded  font-bold '>Login</button>
-            <button  onClick={() => navigate("/signup")} className=' cursor-pointer w-32 h-8 border-none outline-none  text-zinc-200 bg-cyan-900/40 relative -right-5 rounded  font-bold'>SignUp</button>
+            <button  onClick={() => navigate("/login")} className=' cursor-pointer w-32 relative h-8 border-none outline-none   text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Login</button>
+            <button  onClick={() => navigate("/signup")} className=' cursor-pointer w-32 h-8 border-none outline-none   text-cyan-300 bg-cyan-900/40 rounded relative -right-5   font-bold'>SignUp</button>
           </div>
 
   </div>

@@ -18,6 +18,7 @@ const feed = () => {
           setIsLoading(false);
           setIsAuthenticated(true);
         } catch (error) {
+          console.log(error)
           setIsLoading(false);
           setIsAuthenticated(false);
         }
