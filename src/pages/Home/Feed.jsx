@@ -18,7 +18,7 @@ const feed = () => {
   const [search, setSearch] = useState("");
   const [postFilter, setPostFilter] = useState([]);
  const [openModal, setOpenModal] = useState({
-  isShown: true,
+  isShown: false,
   data: null
  })
 
