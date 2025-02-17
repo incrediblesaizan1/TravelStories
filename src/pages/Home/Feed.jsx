@@ -4,7 +4,11 @@ import { axiosInstance } from "../../utils/axiosInstance";
 import Navbar from "../../components/common/Navbar";
 import FeedNav from "../../components/common/FeedNav";
 import TravelStoryCard from "../../components/common/TravelStoryCard";
-import TravelStoryCardFeed from "../../components/common/TravelStoryCard";
+import TravelStoryCardFeed from "../../components/common/TravelStoryCardFeed";
+import ViewTravelStoryFeed from "./ViewTravelStoryFeed"
+import Modal from "react-modal";
+Modal.setAppElement("#root");
+
 
 const feed = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -13,11 +17,10 @@ const feed = () => {
   const [allPost, setAllPost] = useState(null)
   const [search, setSearch] = useState("");
   const [postFilter, setPostFilter] = useState([]);
-  // setPostFilter(postData?.filter((e) =>
-    
-  //     e.visitedLocation.some((item) => item.toLowerCase() == search)
-    
-  // ))
+ const [openModal, setOpenModal] = useState({
+  isShown: true,
+  data: null
+ })
 
 
 
@@ -107,7 +110,10 @@ const feed = () => {
                         story={item.story}
                         date={item.visitedDate}
                         visitedLocation={item.visitedLocation}
-                        onClick={() => {}}
+                        onClick={() => (setOpenModal({
+                          isShown:true,
+                          data:item
+                        }))}
                       />
                     ))}
                   </div>
@@ -119,6 +125,25 @@ const feed = () => {
           )}
         </>
       )}
+        <Modal
+            isOpen={openModal.isShown}
+            onRequestClose={() =>
+              setOpenModal({ isShown: false, data: null })
+            }
+            style={{
+              overlay: { backgroundColor: "rgba(0,0,0,0.6)", zIndex: 50 },
+            }}
+            className="modal-box custom-scrollbar2 bg-[rgb(37,37,37)] outline-none "
+          >
+            <ViewTravelStoryFeed
+              storyInfo={openModal.data || null}
+              onClose={() => {
+                setOpenModal({
+                  isShown: false,
+                });
+              }}
+            />
+          </Modal>
     </>
   );
 };

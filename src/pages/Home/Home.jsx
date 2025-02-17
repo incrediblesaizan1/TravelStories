@@ -14,7 +14,6 @@ import ViewTravelStory from "./ViewTravelStory";
 import EmptyCard from "../../components/common/EmptyCard";
 import { DayPicker, Dropdown } from "react-day-picker";
 import moment from "moment";
-import axios from "axios";
 import FilterInfoTitle from "../../components/common/FilterInfoTitle";
 import { getEmptyCardMessage } from "../../utils/helper";
 
