@@ -23,7 +23,7 @@ const Navbar = ({
 
   return (
     <div className="bg-[url('/walpaper/download.svg')] bg-cover bg-left flex items-center justify-between px-6 py-2 drop-shadow sticky top-0 z-10">
-      <img src={logo} alt="logo" width={100} />
+      <img src={logo} alt="logo" width={100}  className=' invert' />
 
       <SearchBar
         value={searchQuery}

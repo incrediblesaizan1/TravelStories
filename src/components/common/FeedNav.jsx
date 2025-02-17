@@ -26,7 +26,7 @@ const FeedNav = ({setSearch}) => {
  
   return (
     <div className=" bg-[url('/walpaper/download.svg')] bg-cover bg-left backdrop-blur-2xl flex items-center justify-between px-6 py-2 drop-shadow sticky top-0 z-10">
-    <img src={logo}  alt="logo" width={100} />
+    <img src={logo}  alt="logo" width={100} className=' invert' />
 
     <div className="w-80 flex items-center px-4 bg-[rgb(53,53,53)] rounded-md">
       <input
