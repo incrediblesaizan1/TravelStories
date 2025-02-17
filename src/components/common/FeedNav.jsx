@@ -1,17 +1,29 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import logo from "../../assets/download.png";
 import { IoMdClose } from 'react-icons/io';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useNavigate } from "react-router-dom";
+import {axiosInstance} from "../../utils/axiosInstance"
 
 
-const FeedNav = () => {
+const FeedNav = ({setSearch}) => {
     const [value, setValue] = useState(null)
     const navigate = useNavigate();
     const [postData, setPostData] = useState(null)
-   
-  
 
+    useEffect(() => {
+      try {
+        const fetchPost = async() =>{
+         const a =  await axiosInstance.get("get-all-travelStories")
+          setPostData(a.data.stories)
+       }
+
+       fetchPost()
+    } catch (error) {
+      console.log("Something went wrong while fetching the data", error)
+    }
+    }, [])
+ 
   return (
     <div className=" bg-[url('/walpaper/download.svg')] bg-cover bg-left backdrop-blur-2xl flex items-center justify-between px-6 py-2 drop-shadow sticky top-0 z-10">
     <img src={logo}  alt="logo" width={100} />
@@ -22,7 +34,7 @@ const FeedNav = () => {
         placeholder="Search Notes"
         className="w-full text-white text-xs bg-transparent py-[11px] outline-none"
         value={value}
-        onChange={()=>{}}
+        onChange={(e)=>setSearch(e.target.value)}
       />
 
       {value && (
