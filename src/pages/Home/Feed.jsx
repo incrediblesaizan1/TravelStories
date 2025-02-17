@@ -108,6 +108,7 @@ const feed = () => {
                         imgUrl={item.imageUrl}
                         title={item.title}
                         story={item.story}
+                        userId={item.userId}
                         date={item.visitedDate}
                         visitedLocation={item.visitedLocation}
                         onClick={() => (setOpenModal({

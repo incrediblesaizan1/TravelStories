@@ -184,6 +184,7 @@ const Home = () => {
                             title={item.title}
                             story={item.story}
                             date={item.visitedDate}
+                            userId={item.userId}
                             visitedLocation={item.visitedLocation}
                             isFavourite={item.isFavourite}
                             onClick={() => handleViewStory(item)}
