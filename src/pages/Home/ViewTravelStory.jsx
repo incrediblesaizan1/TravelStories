@@ -2,17 +2,29 @@ import moment from "moment";
 import React from "react";
 import { GrMapLocation } from "react-icons/gr";
 import { MdClose, MdDeleteOutline, MdUpdate } from "react-icons/md";
+import { getInitials } from "../../utils/helper";
 
 const ViewTravelStory = ({
   storyInfo,
   onClose,
   onEditClick,
   onDeleteClick,
+  userInfo
 }) => {
   return (
     <div className="relative">
       <div className="flex items-center justify-end">
-        <div>
+        <div className="flex justify-between w-full">
+       <div className="flex items-center gap-1">
+            <div className="w-8 h-8 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
+              {getInitials(userInfo ? userInfo.fullname : "")}
+            </div>
+            <div>
+              <p className="text-lg text-zinc-400 font-medium">
+                {userInfo.fullname || ""}
+              </p>
+            </div>
+          </div>
           <div className="flex items-center gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
             <button className="btn-small border-none outline-none  text-cyan-300 bg-cyan-900/40" onClick={onEditClick}>
               <MdUpdate className="text-lg" /> UPDATE STORY

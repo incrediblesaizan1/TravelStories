@@ -259,6 +259,7 @@ const Home = () => {
                   isShown: false,
                 });
               }}
+              userInfo={userInfo}
               onEditClick={() => {
                 setOpenViewModal({
                   isShown: false,

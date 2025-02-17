@@ -1,19 +1,44 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GrMapLocation } from "react-icons/gr";
 import { MdClose, MdDeleteOutline, MdUpdate } from "react-icons/md";
-
+import { getInitials } from "../../utils/helper";
+import {axiosInstance} from "../../utils/axiosInstance"
+ 
 const ViewTravelStoryFeed = ({
   storyInfo,
   onClose,
-  onEditClick,
-  onDeleteClick,
 }) => {
+
+  const [userInfo, setUserInfo] = useState({})
+  useEffect(() => {
+    
+    const findUser = async ()=>{
+    const user =  await axiosInstance.get(`/user/${storyInfo.userId}`)
+    setUserInfo(user.data.user)
+    console.log(user)
+    }
+
+      findUser()
+
+  }, [])
+  console.log(userInfo)
+
   return (
     <div className="relative">
       <div className="flex items-center justify-end">
         <div>
           <div className="flex items-center gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
+            <div className="flex items-center gap-1">
+                        <div className="w-9 h-9 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
+                          {getInitials(userInfo ? userInfo.fullname : "")}
+                        </div>
+                        <div>
+                          <p className="text-lg text-zinc-400 font-medium">
+                            {userInfo.fullname || ""}
+                          </p>
+                        </div>
+                      </div>
             <button className="cursor-pointer" onClick={onClose}>
               <MdClose className="text-xl text-slate-400" />
             </button>

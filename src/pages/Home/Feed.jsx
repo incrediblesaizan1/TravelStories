@@ -8,12 +8,13 @@ import TravelStoryCardFeed from "../../components/common/TravelStoryCardFeed";
 import ViewTravelStoryFeed from "./ViewTravelStoryFeed"
 import Modal from "react-modal";
 Modal.setAppElement("#root");
-
+import NavbarLogFeed from "../../components/common/NavbarLogFeed"
 
 const feed = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [postData, setPostData] = useState(null);
+  const [userInfo, setUserInfo] = useState({})
   const [allPost, setAllPost] = useState(null)
   const [search, setSearch] = useState("");
   const [postFilter, setPostFilter] = useState([]);
@@ -22,111 +23,113 @@ const feed = () => {
   data: null
  })
 
+ useEffect(() => {
+  if (!postData) return;
+
+  const filteredItems = postData.filter(item =>
+    item.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  setPostData(filteredItems);
+  if(search === "" || search.trim() === ""){
+    setPostData(allPost)
+  }
+}, [search]); 
 
 
-  useEffect(() => {
-    if (!postData) return; // Ensure postData exists
-  
-    const filteredItems = postData.filter(item =>
-      item.title.toLowerCase().includes(search.toLowerCase())
-    );
-  
-    setPostData(filteredItems);
-    if(search === "" || search.trim() === ""){
-      setPostData(allPost)
-    }
-  }, [search]); 
-  
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        await axiosInstance("/user");
-        setIsLoading(false);
-        setIsAuthenticated(true);
-      } catch (error) {
-        console.log(error);
-        setIsLoading(false);
-        setIsAuthenticated(false);
-      }
-    };
-    checkAuth();
+useEffect(() => {
+  const checkAuth = async () => {
     try {
-      const fetchPost = async () => {
-        const a = await axiosInstance.get("get-all-travelStories");
-        setPostData(a.data.stories);
-        setAllPost(a.data.stories)
-        setIsLoading(false);
-      };
-
-      fetchPost();
-    } catch (error) {
+   const user = await axiosInstance("/user");
+   setUserInfo(user.data.user)
       setIsLoading(false);
-      console.log("Something went wrong while fetching the data", error);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setIsAuthenticated(false);
     }
-  }, []);
+  };
+  checkAuth();
+  try {
+    const fetchPost = async () => {
+      const a = await axiosInstance.get("get-all-travelStories");
+      setPostData(a.data.stories);
+      setAllPost(a.data.stories)
+      setIsLoading(false);
+    };
+
+    fetchPost();
+  } catch (error) {
+    setIsLoading(false);
+    console.log("Something went wrong while fetching the data", error);
+  }
+}, []);
+
 
   return (
     <>
-      {isLoading ? (
-        <Loader2 />
-      ) : (
-        <>
-          {isAuthenticated ? (
-            <>
-              <Navbar />
-              <div className="p-6 bg-[rgb(0,0,0,0.9)] ">
-                {postData ? (
-                  <div className="grid w-[97vw] grid-cols-3 gap-4 ">
-                    {postData.map((item) => (
-                      <TravelStoryCard
-                        key={item._id}
-                        imgUrl={item.imageUrl}
-                        title={item.title}
-                        story={item.story}
-                        date={item.visitedDate}
-                        visitedLocation={item.visitedLocation}
-                        isFavourite={item.isFavourite}
-                        onClick={() => {}}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <Loader2 />
-                )}
-              </div>
-            </>
-          ) : (
-            <>
-              <FeedNav setSearch={setSearch} />
-              <div className="p-6 min-h-[100vh] bg-[rgb(0,0,0,0.9)] ">
-                {postData ? (
-                  <div className="grid w-[97vw] grid-cols-3 gap-4 ">
-                    {postData.map((item) => (
-                      <TravelStoryCardFeed
-                        key={item._id}
-                        imgUrl={item.imageUrl}
-                        title={item.title}
-                        story={item.story}
-                        userId={item.userId}
-                        date={item.visitedDate}
-                        visitedLocation={item.visitedLocation}
-                        onClick={() => (setOpenModal({
-                          isShown:true,
-                          data:item
-                        }))}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <Loader2 />
-                )}
-              </div>
-            </>
-          )}
+    <>
+
+    {isAuthenticated?(
+       <>
+       <NavbarLogFeed setSearch={setSearch} userInfo={userInfo} />
+       <div className="p-6 min-h-[100vh] bg-[rgb(0,0,0,0.9)] ">
+         {postData ? (
+           <div className="grid w-[97vw] grid-cols-3 gap-4 ">
+             {postData.map((item) => (
+               <TravelStoryCardFeed
+                 key={item._id}
+                 imgUrl={item.imageUrl}
+                 title={item.title}
+                 story={item.story}
+                 userId={item.userId}
+                 date={item.visitedDate}
+                 visitedLocation={item.visitedLocation}
+                 onClick={() => (setOpenModal({
+                   isShown:true,
+                   data:item
+                 }))}
+               />
+             ))}
+           </div>
+         ) : (
+           <Loader2 />
+         )}
+       </div>
+         </>
+    ):(
+      <>
+      <FeedNav setSearch={setSearch} />
+      <div className="p-6 min-h-[100vh] bg-[rgb(0,0,0,0.9)] ">
+        {postData ? (
+          <div className="grid w-[97vw] grid-cols-3 gap-4 ">
+            {postData.map((item) => (
+              <TravelStoryCardFeed
+                key={item._id}
+                imgUrl={item.imageUrl}
+                title={item.title}
+                story={item.story}
+                userId={item.userId}
+                date={item.visitedDate}
+                visitedLocation={item.visitedLocation}
+                onClick={() => (setOpenModal({
+                  isShown:true,
+                  data:item
+                }))}
+              />
+            ))}
+          </div>
+        ) : (
+          <Loader2 />
+        )}
+      </div>
         </>
-      )}
-        <Modal
+  
+    )}
+    
+    </>
+    <Modal
             isOpen={openModal.isShown}
             onRequestClose={() =>
               setOpenModal({ isShown: false, data: null })
@@ -138,6 +141,7 @@ const feed = () => {
           >
             <ViewTravelStoryFeed
               storyInfo={openModal.data || null}
+              userInfo={userInfo}
               onClose={() => {
                 setOpenModal({
                   isShown: false,
@@ -145,8 +149,8 @@ const feed = () => {
               }}
             />
           </Modal>
-    </>
-  );
-};
 
-export default feed;
+  </>  )
+}
+
+export default feed
