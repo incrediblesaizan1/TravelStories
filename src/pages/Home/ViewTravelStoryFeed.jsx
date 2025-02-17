@@ -26,11 +26,11 @@ const ViewTravelStoryFeed = ({
 
   return (
     <div className="relative">
-      <div className="flex items-center justify-end">
-        <div>
-          <div className="flex items-center gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
+      <div className="flex items-center">
+        <div className="flex justify-between w-full">
+          <div className="flex items-center justify-between w-full gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
             <div className="flex items-center gap-1">
-                        <div className="w-9 h-9 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
+                        <div className="w-11 h-11 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
                           {getInitials(userInfo ? userInfo.fullname : "")}
                         </div>
                         <div>

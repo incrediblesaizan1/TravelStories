@@ -16,7 +16,7 @@ const ViewTravelStory = ({
       <div className="flex items-center justify-end">
         <div className="flex justify-between w-full">
        <div className="flex items-center gap-1">
-            <div className="w-8 h-8 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
+            <div className="w-11 h-11 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
               {getInitials(userInfo ? userInfo.fullname : "")}
             </div>
             <div>
