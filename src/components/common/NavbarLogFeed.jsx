@@ -52,7 +52,7 @@ const FeedNav = ({setSearch, userInfo}) => {
     </div>
 
     <div className='mr-8'>
-            <button  onClick={() => navigate("/dashboard")} className=' cursor-pointer w-32 absolute bottom-7 right-36 h-8 border-none outline-none   text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Feed</button>
+            <button  onClick={() => navigate("/dashboard")} className=' cursor-pointer w-32 absolute bottom-7 right-36 h-8 border-none outline-none   text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Dashboard</button>
           </div>
 
     <ProfileInfo userInfo={userInfo} />
