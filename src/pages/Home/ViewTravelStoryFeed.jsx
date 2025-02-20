@@ -31,7 +31,7 @@ const ViewTravelStoryFeed = ({
           <div className="flex items-center justify-between w-full gap-3 bg-[rgb(37,37,37)] p-2 rounded-l-lg">
             <div className="flex items-center gap-1">
                         <div className="w-11 h-11 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
-                          {getInitials(userInfo ? userInfo.fullname : "")}
+                        {userInfo ? userInfo.dp?<img src={userInfo.dp} className=" overflow-hidden w-full h-full rounded-full object-cover" alt="Profile" />: userInfo.fullname? userInfo.fullname[0]: "" : ""}
                         </div>
                         <div>
                           <p className="text-lg text-zinc-400 font-medium">
