@@ -16,7 +16,7 @@ const ProfileInfo = ({ userInfo }) => {
     <div className="flex items-center gap-3">
       <div
       onClick={()=>setOpenDpModal({isShown: true})}
-      className="w-20 h-20 flex cursor-pointer items-center justify-center rounded-full text-3xl text-slate-950 font-normal bg-[rgb(53,53,53)] "
+      className="w-16 h-16 flex cursor-pointer items-center justify-center rounded-full text-3xl text-slate-950 font-normal bg-[rgb(53,53,53)] "
        >
         {userInfo ? (
           userInfo.dp ? (
