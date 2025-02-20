@@ -1,15 +1,36 @@
-import React from "react";
-import { getInitials } from "../../utils/helper";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../utils/axiosInstance";
+import AddDb from "../../pages/Home/AddDb"
+import Modal from "react-modal";
+Modal.setAppElement("#root");
 
 const ProfileInfo = ({ userInfo }) => {
   const navigate = useNavigate();
+  const[openDpModal, setOpenDpModal] = useState({
+    isShown: false,
+    data: null,
+  })
 
   return (
     <div className="flex items-center gap-3">
-      <div className="w-12 h-12 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
-        {userInfo ? userInfo.dp? <img src={userInfo.dp} className=" overflow-hidden w-full h-full rounded-full object-cover" alt="Profile" />: userInfo.fullname[0] : "" }
+      <div
+      onClick={()=>setOpenDpModal({isShown: true})}
+      className="w-12 h-12 flex items-center justify-center rounded-full text-3xl text-slate-950 font-normal bg-[rgb(53,53,53)] "
+       >
+        {userInfo ? (
+          userInfo.dp ? (
+            <img
+              src={userInfo.dp}
+              className=" overflow-hidden w-full h-full rounded-full object-cover"
+              alt="Profile"
+            />
+          ) : (
+            userInfo.fullname[0]
+          )
+        ) : (
+          ""
+        )}
       </div>
       <div>
         <p className="text-lg text-zinc-400 relative top-1 font-medium">
@@ -26,6 +47,29 @@ const ProfileInfo = ({ userInfo }) => {
           LogOut
         </button>
       </div>
+
+
+      <Modal
+            isOpen={openDpModal.isShown}
+            onRequestClose={() =>
+              setOpenDpModal({ isShown: false, data: null })
+            }
+            style={{
+              overlay: { backgroundColor: "rgba(0,0,0,0.6)", zIndex: 50 },
+            }}
+            className="modal-box custom-scrollbar2 bg-[rgb(37,37,37)] outline-none "
+          >
+            <AddDb
+              onClose={() => {
+                setOpenDpModal({
+                  isShown: false,
+                });
+              }}
+              userInfo={userInfo}
+            />
+          </Modal>
+
+
     </div>
   );
 };
