@@ -14,6 +14,7 @@ const AddDb = ({ userInfo }) => {
     if(file){
       setSelectFile(file)
       setPreview(URL.createObjectURL(file));
+      console.log(URL.createObjectURL(file))
     }
   }
  
