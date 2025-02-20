@@ -51,11 +51,14 @@ const FeedNav = ({setSearch, userInfo}) => {
       />
     </div>
 
-    <div className='mr-8'>
-            <button  onClick={() => navigate("/dashboard")} className=' cursor-pointer w-32 absolute bottom-7 right-36 h-8 border-none outline-none mx-10  text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Dashboard</button>
+    <div className="gap-4 flex items-center">
+<div>
+            <button  onClick={() => navigate("/dashboard")} className=' cursor-pointer w-32  h-8 border-none outline-none text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Dashboard</button>
           </div>
-
-    <ProfileInfo userInfo={userInfo} />
+<div className='text-end'>
+      <ProfileInfo userInfo={userInfo} />
+</div>
+    </div>
 
   </div>
   )

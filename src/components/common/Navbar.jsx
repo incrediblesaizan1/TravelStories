@@ -36,13 +36,15 @@ const Navbar = ({
         handleSearch={handleSearch}
         onClear={onClearSearch}
       />
-
-<div className='mr-8'>
-            <button  onClick={() => navigate("/feed")} className=' cursor-pointer w-32 absolute bottom-7 right-36 h-8 border-none outline-none mx-10  text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Feed</button>
+<div className="gap-4 flex items-center">
+<div>
+            <button  onClick={() => navigate("/feed")} className=' cursor-pointer w-32  h-8 border-none outline-none text-cyan-300 bg-cyan-900/40 rounded  font-bold '>Feed</button>
           </div>
-
+<div>
       <ProfileInfo userInfo={userInfo} />
+</div>
     </div>
+</div>
   );
 };
 
