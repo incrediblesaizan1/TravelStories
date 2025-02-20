@@ -34,7 +34,7 @@ const ProfileInfo = ({ userInfo }) => {
       </div>
       <div>
         <p className="text-lg text-zinc-400 relative top-1 font-medium">
-          {userInfo.fullname || ""}
+          {userInfo.fullname.split(" ")[0].slice(0,13) || ""}
         </p>
         <button
           className="text-sm cursor-pointer hover:text-red-500 text-slate-300 underline"
