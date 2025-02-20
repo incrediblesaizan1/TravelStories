@@ -21,14 +21,10 @@ const AddDb = ({ userInfo }) => {
     setLoading(true)
     e.preventDefault();
 
-    if (!selectfile) {
-      alert("Please select a file first!");
-      return;
-      setLoading(false)
-    }
-
     const formData = new FormData();
-    formData.append("image", selectfile);
+    if (selectfile) {
+      formData.append("image", selectfile);
+    }
 
      await axiosInstance.post("/dp",formData,{
       headers: { "Content-Type": "multipart/form-data" },
