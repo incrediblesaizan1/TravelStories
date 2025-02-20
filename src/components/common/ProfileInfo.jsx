@@ -9,10 +9,10 @@ const ProfileInfo = ({ userInfo }) => {
   return (
     <div className="flex items-center gap-3">
       <div className="w-12 h-12 flex items-center justify-center rounded-full text-slate-950 font-medium bg-[rgb(53,53,53)] ">
-        {getInitials(userInfo ? userInfo.fullname : "")}
+        {userInfo ? userInfo.dp? <img src={userInfo.dp} className=" overflow-hidden w-full h-full rounded-full object-cover" alt="Profile" />: userInfo.fullname[0] : "" }
       </div>
       <div>
-        <p className="text-lg text-zinc-400 relative left-2 top-1 font-medium">
+        <p className="text-lg text-zinc-400 relative top-1 font-medium">
           {userInfo.fullname || ""}
         </p>
         <button

@@ -77,7 +77,7 @@ useEffect(() => {
        <div className="p-6 min-h-[100vh] bg-[rgb(0,0,0,0.9)] ">
          {postData ? (
            <div className="grid w-[97vw] grid-cols-3 gap-4 ">
-             {postData.map((item) => (
+             {[...postData].reverse().map((item) => (
                <TravelStoryCardFeed
                  key={item._id}
                  imgUrl={item.imageUrl}
