@@ -43,7 +43,7 @@ useEffect(() => {
    const user = await axiosInstance.get("/user",{
     headers: { 
       "Content-Type": "multipart/form-data",
-      "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+      "accesstoken": `${localStorage.getItem("accessToken")}`
     },
    });
    setUserInfo(user.data.user)

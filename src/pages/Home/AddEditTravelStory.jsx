@@ -57,7 +57,7 @@ const AddEditTravelStory = ({
         },{
           headers: { 
             "Content-Type": "multipart/form-data",
-            "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+            "accesstoken": `${localStorage.getItem("accessToken")}`
           },
         }
       );
@@ -107,7 +107,7 @@ const AddEditTravelStory = ({
       },{
         headers: { 
           "Content-Type": "multipart/form-data",
-          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          "accesstoken": `${localStorage.getItem("accessToken")}`
         },
       }
     );

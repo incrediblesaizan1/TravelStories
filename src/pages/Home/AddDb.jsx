@@ -29,7 +29,7 @@ const AddDb = ({ userInfo }) => {
      await axiosInstance.post("/dp",formData,{
       headers: { 
         "Content-Type": "multipart/form-data",
-        "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+        "accesstoken": `${localStorage.getItem("accessToken")}`
       },
     })
     window.location.reload()

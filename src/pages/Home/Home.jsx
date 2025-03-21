@@ -42,7 +42,7 @@ const Home = () => {
       const user = await axiosInstance.get("/user",{
         headers: { 
           "Content-Type": "multipart/form-data",
-          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          "accesstoken": `${localStorage.getItem("accessToken")}`
         },
       });
       setUserInfo(user.data.user);
@@ -59,7 +59,7 @@ const Home = () => {
       const response = await axiosInstance.get("/get-user-travelStories",{
         headers: { 
           "Content-Type": "multipart/form-data",
-          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          "accesstoken": `${localStorage.getItem("accessToken")}`
         },
       });
       setAllStories(response.data.stories.reverse());
@@ -88,7 +88,7 @@ const Home = () => {
     },{
       headers: { 
         "Content-Type": "multipart/form-data",
-        "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+        "accesstoken": `${localStorage.getItem("accessToken")}`
       },
     });
     toast.success("Story Updated Successfully");
@@ -113,7 +113,7 @@ const Home = () => {
       },{
         headers: { 
           "Content-Type": "multipart/form-data",
-          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          "accesstoken": `${localStorage.getItem("accessToken")}`
         },
       });
       if (response.data && response.data.stories) {
@@ -141,7 +141,7 @@ const Home = () => {
         },{
           headers: { 
             "Content-Type": "multipart/form-data",
-            "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+            "accesstoken": `${localStorage.getItem("accessToken")}`
           },
         });
 
@@ -298,7 +298,7 @@ const Home = () => {
                     `/delete-travelStory/${openViewModal.data._id}`,{
                       headers: { 
                         "Content-Type": "multipart/form-data",
-                        "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+                        "accesstoken": `${localStorage.getItem("accessToken")}`
                       },
                     }
                   );
