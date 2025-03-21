@@ -49,7 +49,7 @@ const AddEditTravelStory = ({
         {
           title: title,
           story: story,
-          visitedLocation: visitedLocation,
+          visitedLocation: "visitedLocation",
           imageUrl: imageUrl || "",
           visitedDate: visitedDate
             ? moment(visitedDate).valueOf()
@@ -99,7 +99,7 @@ const AddEditTravelStory = ({
       const response = await axiosInstance.post("/travelStory", {
         title: title,
         story: story,
-        visitedLocation: visitedLocation,
+        visitedLocation: "visitedLocation",
         imageUrl: imageUrl || "",
         visitedDate: visitedDate
           ? moment(visitedDate).valueOf()
