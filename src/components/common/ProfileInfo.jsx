@@ -38,10 +38,9 @@ const ProfileInfo = ({ userInfo }) => {
         </p>
         <button
           className="text-sm cursor-pointer hover:text-red-500 text-slate-300 underline"
-          onClick={async () => {
-            await axiosInstance.get("/logout");
-            window.close();
-            navigate("/login");
+          onClick={() => {
+            localStorage.removeItem("accessToken")
+            window.location.reload()
           }}
         >
           LogOut
