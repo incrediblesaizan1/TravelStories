@@ -5,7 +5,8 @@ export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 10000,
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
+  headers: { 
+    "Content-Type": "multipart/form-data",
+    "accesstoken": `${localStorage.getItem("accessToken")}`
   },
 });
