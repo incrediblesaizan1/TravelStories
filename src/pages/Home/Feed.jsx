@@ -40,7 +40,12 @@ const feed = () => {
 useEffect(() => {
   const checkAuth = async () => {
     try {
-   const user = await axiosInstance("/user");
+   const user = await axiosInstance.get("/user",{
+    headers: { 
+      "Content-Type": "multipart/form-data",
+      "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+    },
+   });
    setUserInfo(user.data.user)
       setIsLoading(false);
       setIsAuthenticated(true);

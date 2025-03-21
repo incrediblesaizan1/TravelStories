@@ -44,6 +44,8 @@ const SignUp = () => {
       });
       setIsLoading(false);
       console.log("SignUp successful", response.data);
+      console.log(response.data.user.accessToken)
+      localStorage.setItem("accessToken", response.data.user.accessToken);
       navigate("/dashboard");
     } catch (err) {
       setIsLoading(false);

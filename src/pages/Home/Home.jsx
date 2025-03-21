@@ -39,7 +39,12 @@ const Home = () => {
 
   const checkLoggedIN = async () => {
     try {
-      const user = await axiosInstance("/user");
+      const user = await axiosInstance.get("/user",{
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+        },
+      });
       setUserInfo(user.data.user);
       await getAlltravelStories();
       setIsLoggedIn(true);
@@ -51,7 +56,12 @@ const Home = () => {
 
   const getAlltravelStories = async () => {
     try {
-      const response = await axiosInstance.get("/get-user-travelStories");
+      const response = await axiosInstance.get("/get-user-travelStories",{
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+        },
+      });
       setAllStories(response.data.stories.reverse());
       setIsLoading(false);
     } catch (error) {
@@ -75,6 +85,11 @@ const Home = () => {
     storyData.isFavourite = !storyData.isFavourite;
     await axiosInstance.put(`/update-is-favourite/${storyData._id}`, {
       isFavourite: storyData.isFavourite,
+    },{
+      headers: { 
+        "Content-Type": "multipart/form-data",
+        "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+      },
     });
     toast.success("Story Updated Successfully");
 
@@ -94,6 +109,11 @@ const Home = () => {
       const response = await axiosInstance.get("/search", {
         params: {
           query,
+        },
+      },{
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
         },
       });
       if (response.data && response.data.stories) {
@@ -118,6 +138,11 @@ const Home = () => {
       if (startDate && endDate) {
         const response = await axiosInstance.get("/travel-stories-filter", {
           params: { startDate, endDate },
+        },{
+          headers: { 
+            "Content-Type": "multipart/form-data",
+            "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          },
         });
 
         if (response.data && response.data.stories) {
@@ -270,7 +295,12 @@ const Home = () => {
                 try {
                   setIsLoading(true);
                   await axiosInstance.delete(
-                    `/delete-travelStory/${openViewModal.data._id}`
+                    `/delete-travelStory/${openViewModal.data._id}`,{
+                      headers: { 
+                        "Content-Type": "multipart/form-data",
+                        "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+                      },
+                    }
                   );
                   getAlltravelStories();
                   setOpenViewModal({

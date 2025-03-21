@@ -33,6 +33,7 @@ const Login = () => {
       });
       setIsLoading(false);
       console.log("Login successful", response.data);
+      localStorage.setItem("accessToken", response.data.user.accessToken);
       navigate("/dashboard");
     } catch (err) {
       setIsLoading(false);

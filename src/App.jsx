@@ -49,7 +49,12 @@ const Root = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axiosInstance("/user");
+        await axiosInstance.get("/user",{
+          headers: { 
+            "Content-Type": "multipart/form-data",
+            "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          },
+        });
         setIsLoading(false);
         setIsAuthenticated(true);
       } catch (error) {

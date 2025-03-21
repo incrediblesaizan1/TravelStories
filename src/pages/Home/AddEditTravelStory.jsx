@@ -45,7 +45,7 @@ const AddEditTravelStory = ({
       }
 
       const response = await axiosInstance.put(
-        `edit-travelStory/${storyInfo._id}`,
+        `/edit-travelStory/${storyInfo._id}`,
         {
           title: title,
           story: story,
@@ -54,6 +54,11 @@ const AddEditTravelStory = ({
           visitedDate: visitedDate
             ? moment(visitedDate).valueOf()
             : moment().valueOf(),
+        },{
+          headers: { 
+            "Content-Type": "multipart/form-data",
+            "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+          },
         }
       );
 
@@ -99,7 +104,13 @@ const AddEditTravelStory = ({
         visitedDate: visitedDate
           ? moment(visitedDate).valueOf()
           : moment().valueOf(),
-      });
+      },{
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          "accesstoken": `Bearer ${localStorage.getItem("accessToken")}`
+        },
+      }
+    );
 
       if (response.data && response.data.story) {
         toast.success("Story Added Successfully");
