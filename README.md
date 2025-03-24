@@ -29,7 +29,7 @@ This is Travel Story app is fully dynamic website in which you can make your por
 
 ### Deployed Website
 
-- Live Site URL: [https://incrediblesaizan1-travel-stories.vercel.app](https://incrediblesaizan1-travel-stories.vercel.app)
+- Live Site URL: [https://travel-tale-sk.vercel.app](https://travel-tale-sk.vercel.app)
 
 
 
@@ -63,5 +63,5 @@ npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
-##### Thanks for visiting my Git repository please give me a star and don't for forget to visit my website TravelStory = https://incrediblesaizan1-travel-stories.vercel.app
+##### Thanks for visiting my Git repository please give me a star and don't for forget to visit my website TravelStory = https://travel-tale-sk.vercel.app
 
